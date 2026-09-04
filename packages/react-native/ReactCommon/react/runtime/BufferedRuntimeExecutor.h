@@ -8,6 +8,7 @@
 #pragma once
 
 #include <ReactCommon/RuntimeExecutor.h>
+#include <ReactCommon/SchedulerPriority.h>
 #include <jsi/jsi.h>
 #include <atomic>
 #include <mutex>
@@ -19,10 +20,18 @@ class BufferedRuntimeExecutor {
  public:
   using Work = std::function<void(jsi::Runtime &runtime)>;
 
+  /**
+   * Drains one piece of buffered work. Always given a priority; an executor
+   * that sits below the RuntimeScheduler, and so has no notion of one, ignores
+   * it.
+   */
+  using Executor = std::function<void(SchedulerPriority, Work &&)>;
+
   // A utility structure to track pending work in the order of when they arrive.
   struct BufferedWork {
     uint64_t index_;
     Work work_;
+    SchedulerPriority priority_;
     bool operator<(const BufferedWork &rhs) const
     {
       // Higher index has lower priority, so this inverted comparison puts
@@ -31,9 +40,17 @@ class BufferedRuntimeExecutor {
     }
   };
 
-  BufferedRuntimeExecutor(RuntimeExecutor runtimeExecutor);
+  BufferedRuntimeExecutor(Executor executor);
 
+  /** Equivalent to `execute(SchedulerPriority::ImmediatePriority, ...)`. */
   void execute(Work &&callback);
+
+  /**
+   * Buffers [callback] alongside work submitted through the other overload,
+   * preserving submission order between them, and dispatches it at [priority]
+   * once flushed.
+   */
+  void execute(SchedulerPriority priority, Work &&callback);
 
   // Flush buffered JS calls and then diable JS buffering
   void flush();
@@ -42,7 +59,7 @@ class BufferedRuntimeExecutor {
   // Perform flushing without locking mechanism
   void unsafeFlush();
 
-  RuntimeExecutor runtimeExecutor_;
+  Executor executor_;
   std::atomic<bool> isBufferingEnabled_;
   std::mutex lock_;
   std::atomic<uint64_t> lastIndex_;
