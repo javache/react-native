@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<7f1f0374fb5e2ec1b2727d1d2a7fc304>>
+ * @generated SignedSource<<13ce24473fdf631a2689e2ad89904fcd>>
  */
 
 /**
@@ -315,11 +315,6 @@ class ReactNativeFeatureFlags {
    * Enables the experimental version of `VirtualViewContainerState`.
    */
   RN_EXPORT static bool enableVirtualViewContainerStateExperimental();
-
-  /**
-   * Fix incorrect parentTag passed as parentTagForUpdate in the unflatten-unflatten branch of calculateShadowViewMutationsFlattener, which causes UPDATE mutations to reference a parent being created in the same batch.
-   */
-  RN_EXPORT static bool fixDifferentiatorParentTagForUnflattenCase();
 
   /**
    * Uses the default event priority instead of the discreet event priority by default when dispatching events from Fabric to React.

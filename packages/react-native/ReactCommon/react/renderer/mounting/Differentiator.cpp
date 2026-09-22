@@ -9,7 +9,6 @@
 
 #include <cxxreact/TraceSection.h>
 #include <react/debug/react_native_assert.h>
-#include <react/featureflags/ReactNativeFeatureFlags.h>
 #include <algorithm>
 #include <unordered_map>
 #include "internal/CullingContext.h"
@@ -684,10 +683,7 @@ static void calculateShadowViewMutationsFlattener(
               treeChildPair,
               (reparentMode == ReparentMode::Flatten
                    ? oldTreeNodePair.shadowView.tag
-                   : (ReactNativeFeatureFlags::
-                              fixDifferentiatorParentTagForUnflattenCase()
-                          ? parentTagForUpdate
-                          : parentTag)),
+                   : parentTagForUpdate),
               subVisitedNewMap,
               subVisitedOldMap,
               cullingContextForUnvisitedOtherNodes,

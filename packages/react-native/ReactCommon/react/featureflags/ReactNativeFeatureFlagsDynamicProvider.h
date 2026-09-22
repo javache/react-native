@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<017e077f16de57249c1ab774bdb5eb96>>
+ * @generated SignedSource<<5bf7fb7915acc1958df414702331e5fd>>
  */
 
 /**
@@ -540,15 +540,6 @@ class ReactNativeFeatureFlagsDynamicProvider : public ReactNativeFeatureFlagsDef
     }
 
     return ReactNativeFeatureFlagsDefaults::enableVirtualViewContainerStateExperimental();
-  }
-
-  bool fixDifferentiatorParentTagForUnflattenCase() override {
-    auto value = values_["fixDifferentiatorParentTagForUnflattenCase"];
-    if (!value.isNull()) {
-      return value.getBool();
-    }
-
-    return ReactNativeFeatureFlagsDefaults::fixDifferentiatorParentTagForUnflattenCase();
   }
 
   bool fixMappingOfEventPrioritiesBetweenFabricAndReact() override {
