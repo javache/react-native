@@ -1,12 +1,19 @@
 # Ignore Pods
 **/Pods
+**/metainternal/**
 
 # Ignore hermes as it is downloaded from the react_native_pods
 **/sdks/hermes
 **/sdks/downloads
 
+flow-typed/npm/**
 packages/*/dist
 vendor
 packages/**/types_generated/
+packages/react-native/ReactNativeApi.d.ts
+packages/react-native/Libraries/Renderer/**
+packages/react-native/src/private/featureflags/ReactNativeFeatureFlags.js
+packages/react-native-babel-preset/src/__tests__/__fixtures__/output/**
+private/eslint-plugin-monorepo/rules/sort-imports.js
 
 packages/react-native-codegen/e2e/__test_fixtures__/modules/NativeEnumTurboModule.js

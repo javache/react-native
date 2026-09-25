@@ -27,7 +27,12 @@ const MINIMUM_SWIFT_FORMAT_MAJOR = 6;
 const MINIMUM_SWIFT_FORMAT_MINOR = 3;
 const MAX_FILES_PER_PROCESS = 100;
 const MAX_HEADER_BYTES = 4096;
-const IGNORE = ['**/Pods/**', '**/build/**', '**/node_modules/**'];
+const IGNORE = [
+  '**/Pods/**',
+  '**/build/**',
+  '**/metainternal/**',
+  '**/node_modules/**',
+];
 
 function isGenerated(file) {
   let fd;

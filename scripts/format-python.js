@@ -17,6 +17,11 @@ const path = require('node:path');
 
 const REPO_ROOT = path.resolve(__dirname, '..');
 const RUFF_VERSION = '0.14.0';
+// Passed to Ruff as `--config <inline TOML>`, which overrides only this single
+// setting and leaves any discovered configuration files in place. The
+// `--exclude` flag cannot be used instead: it replaces Ruff's default
+// exclusions (`node_modules`, `build`, …) rather than adding to them.
+const RUFF_CONFIG = 'extend-exclude = ["**/metainternal/**"]';
 const RUFF_ROOT = path.join(
   REPO_ROOT,
   'node_modules',
@@ -99,7 +104,12 @@ function runRuff(command, prefixArguments, check) {
   }
   const format = run(command, [
     ...prefixArguments,
+    '--config',
+    RUFF_CONFIG,
     'format',
+    // Ruff ignores RUFF_CONFIG's exclusions for any path named explicitly on
+    // the command line unless exclusions are forced.
+    '--force-exclude',
     ...(check ? ['--check'] : []),
     '.',
   ]);
@@ -193,7 +203,10 @@ function main() {
       ...python.prefixArguments,
       '-m',
       'ruff',
+      '--config',
+      RUFF_CONFIG,
       'format',
+      '--force-exclude',
       ...(check ? ['--check'] : []),
       '.',
     ],

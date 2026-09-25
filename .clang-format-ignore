@@ -1,5 +1,6 @@
 **/Pods/**
 **/build/**
+**/metainternal/**
 **/node_modules/**
 packages/react-native/React/I18n/FBXXHashUtils.h
 packages/react-native/ReactAndroid/src/main/jni/first-party/yogajni/**
