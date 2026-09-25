@@ -25,6 +25,7 @@ const IGNORE = [
   '**/Pods/**',
   '**/build/**',
   '**/com/facebook/yoga/**',
+  '**/metainternal/**',
   '**/node_modules/**',
 ];
 

@@ -27,6 +27,7 @@ const IGNORE = [
   '**/com/facebook/yoga/**',
   '**/hermes-engine/**',
   '**/internal/featureflags/**',
+  '**/metainternal/**',
   '**/node_modules/**',
   '**/systeminfo/ReactNativeVersion.kt',
 ];
