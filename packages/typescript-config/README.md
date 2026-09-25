@@ -20,7 +20,7 @@ If your app still needs access to deep `'react-native/Libraries/*'` imports (dep
   "extends": "@react-native/typescript-config",
   "compilerOptions": {
     // ...
-    "customConditions": ["react-native", "react-native-legacy-deep-imports"]
-  }
+    "customConditions": ["react-native", "react-native-legacy-deep-imports"],
+  },
 }
 ```

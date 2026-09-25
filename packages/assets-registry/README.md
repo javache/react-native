@@ -17,13 +17,14 @@ Most apps never import this directly — assets are handled through `<Image>`.
 > **Deprecated**: Aliases to [`AssetRegistry`](https://reactnative.dev/docs/assetregistry) (since 0.87).
 >
 > Please use:
+>
 > - `import { AssetRegistry } from 'react-native';` (apps/library code)
 > - `'react-native/asset-registry'` (entrypoint for Metro/build configs)
 
-| Export | Signature | Notes |
-|---|---|---|
-| `registerAsset` | `(asset: PackagerAsset) => number` | Stores the asset; returns a numeric ID |
-| `getAssetByID` | `(assetId: number) => PackagerAsset` | Looks an asset back up by ID |
+| Export          | Signature                            | Notes                                  |
+| --------------- | ------------------------------------ | -------------------------------------- |
+| `registerAsset` | `(asset: PackagerAsset) => number`   | Stores the asset; returns a numeric ID |
+| `getAssetByID`  | `(assetId: number) => PackagerAsset` | Looks an asset back up by ID           |
 
 ### `@react-native/assets-registry/path-support` (DEPRECATED)
 
@@ -32,8 +33,8 @@ Most apps never import this directly — assets are handled through `<Image>`.
 
 Android resource-path helpers, used when copying assets into `drawable-*` folders.
 
-| Export | Signature | Notes |
-|---|---|---|
+| Export                         | Signature | Notes |
+| ------------------------------ | --- | --- |
 | `getAndroidResourceFolderName` | `(asset: PackagerAsset, scale: number) => string` | e.g. `drawable-xhdpi`; non-drawable types resolve to `raw` |
 | `getAndroidResourceIdentifier` | `(asset: PackagerAsset) => string` | Sanitised resource name |
-| `getBasePath` | `(asset: PackagerAsset) => string` | `httpServerLocation` without the leading slash |
+| `getBasePath`                  | `(asset: PackagerAsset) => string` | `httpServerLocation` without the leading slash |

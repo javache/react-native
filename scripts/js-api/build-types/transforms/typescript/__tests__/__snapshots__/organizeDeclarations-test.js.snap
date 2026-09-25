@@ -8,7 +8,7 @@ exports[`organizeDeclarations should sort declarations and move exports into sin
  * LICENSE file in the root directory of this source tree.
  */
 
-import * as React from \\"react\\";
+import * as React from 'react';
 declare type Bar = null | string | number;
 declare class Baz {
   foo: string;
@@ -18,8 +18,8 @@ declare class ExportedBaz {
   foo: string;
 }
 declare function exportedFn(): void;
-declare type ExportedFoo = \\"A\\" | \\"B\\";
+declare type ExportedFoo = 'A' | 'B';
 declare function fn(): void;
-declare type Foo = \\"A\\" | \\"B\\";
+declare type Foo = 'A' | 'B';
 export { ExportedBar, ExportedBaz, ExportedFoo, exportedFn };"
 `;

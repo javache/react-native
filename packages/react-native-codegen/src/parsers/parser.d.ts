@@ -5,13 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import type { SchemaType } from '../CodegenSchema';
-import type { ParserType } from './errors';
+import type {SchemaType} from '../CodegenSchema';
+import type {ParserType} from './errors';
 
 // useful members only for downstream
 export interface Parser {
-    language(): ParserType;
-    parseFile(filename: string): SchemaType;
-    parseString(contents: string, filename?: string): SchemaType;
-    parseModuleFixture(filename: string): SchemaType;
+  language(): ParserType;
+  parseFile(filename: string): SchemaType;
+  parseString(contents: string, filename?: string): SchemaType;
+  parseModuleFixture(filename: string): SchemaType;
 }

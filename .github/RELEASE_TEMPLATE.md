@@ -8,7 +8,7 @@
 
 To test it, run:
 
-npx react-native init RN__SHORT_VERSION__ --version __VERSION__
+npx react-native init RN__SHORT_VERSION__ --version **VERSION**
 
 ---
 

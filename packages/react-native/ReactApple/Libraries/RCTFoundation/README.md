@@ -3,6 +3,7 @@
 RCTFoundation is a collection of lightweight utility libraries.
 
 Rules for RCTFoundation libraries:
+
 - They must only depend on other RCTFoundation libraries.
 - Headers cannot contain C++.
 - They have modular set to true in BUCK.

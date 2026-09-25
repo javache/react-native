@@ -9,11 +9,13 @@ This file contains all changelogs for releases in the 0.60-0.69 range. Please ch
 - [0.69] Bump CLI to ^8.0.7, Metro to 0.70.4 ([56807fadfa](https://github.com/facebook/react-native/commit/56807fadfacf3c5cc62a8d1948b3d72ca51a5e6b) by [@robhogan](https://github.com/robhogan))
 
 #### iOS specific
+
 - [0.69] Use `Content-Location` header in bundle response as JS source URL (#37501) ([367fc7ad52](https://github.com/facebook/react-native/commit/367fc7ad5254c5dd2c8ef38248766173525cc77c) by [@robhogan](https://github.com/robhogan))
 
 ### Fixed
 
 #### Android specific
+
 - Prevent crash in runAnimationStep on OnePlus and Oppo devices (#37487) ([4db7a10e25](https://github.com/facebook/react-native/commit/4db7a10e257c664aced8cd8a1737d7ed9ced14fe) by [@hsource](https://github.com/hsource))
 
 ## v0.69.11
@@ -281,7 +283,7 @@ This file contains all changelogs for releases in the 0.60-0.69 range. Please ch
 ### Fixed
 
 - Remove unactionable warning about `codegenNativeComponent` when on 'Paper' ([494b73cb33](https://github.com/facebook/react-native/commit/494b73cb33197fa865e9ead8fdca11bce6822917) by [@tido64](https://github.com/tido64))
--  Fix typo in Value's constructor with a Symbol ([a7a0f86a73](https://github.com/facebook/react-native/commit/a7a0f86a73ab51be31fb2c3205612d7ff1fb5384) by [@jpporto](https://github.com/jpporto))
+- Fix typo in Value's constructor with a Symbol ([a7a0f86a73](https://github.com/facebook/react-native/commit/a7a0f86a73ab51be31fb2c3205612d7ff1fb5384) by [@jpporto](https://github.com/jpporto))
 - Avoid full copy of large folly::dynamic objects by switching to std::move semantics ([3f98c8e4c2](https://github.com/facebook/react-native/commit/3f98c8e4c2c8f40b81c1a90aa65c1bdc9327faed) by [@NikoAri](https://github.com/NikoAri))
 - Fix performance issue on Animated.interpolate with big input range ([f503b21203](https://github.com/facebook/react-native/commit/f503b212039f79f00ea56b65ecf3cd150b82f087) by [@Almouro](https://github.com/Almouro))
 - Update function spacing linting rules ([8650220cf9](https://github.com/facebook/react-native/commit/8650220cf99739c4b904a37ce4f19ce7dfd3bdbb) by [@joeframbach](https://github.com/joeframbach))
@@ -473,7 +475,7 @@ This file contains all changelogs for releases in the 0.60-0.69 range. Please ch
 
 ### New Architecture
 
-*If you are interested in enabling the new architecture, please refer to [the dedicated documentation](https://reactnative.dev/docs/next/new-architecture-intro).*
+_If you are interested in enabling the new architecture, please refer to [the dedicated documentation](https://reactnative.dev/docs/next/new-architecture-intro)._
 
 - Do not include Facebook license on users codegen'd code ([450967938a](https://github.com/facebook/react-native/commit/450967938ab25c4dabb9d5ecd9f7b57afb1c78dd) by [@cortinico](https://github.com/cortinico))
 
@@ -518,7 +520,6 @@ This file contains all changelogs for releases in the 0.60-0.69 range. Please ch
 - Support fnm when detecting node binary ([c9e4d34885](https://github.com/facebook/react-native/commit/c9e4d3488578d65e55198ad597252a2ac8cc5f73) by [@MoOx](https://github.com/MoOx))
 - Find-node.sh now respects .nvmrc ([35bcf934b1](https://github.com/facebook/react-native/commit/35bcf934b186e581d100d43e563044300759557f) by [@igrayson](https://github.com/igrayson))
 - Add macros to be able to stub C functions in tests ([749a9207b6](https://github.com/facebook/react-native/commit/749a9207b6f0545c03ca83efbda7971ffd4d2d57) by [@philIip](https://github.com/philIip))
-
 
 ### Changed
 
@@ -643,7 +644,6 @@ This file contains all changelogs for releases in the 0.60-0.69 range. Please ch
 
 - Gradle: Deprecate `reactRoot` in favor of `root` and `reactNativeDir` ([8bc324fd34](https://github.com/facebook/react-native/commit/8bc324fd34337ab159e2e21e213a6c5b06c548da) by [@cortinico](https://github.com/cortinico))
 
-
 ### Removed
 
 - DeprecatedPropTypes (deep-link) modules removed from React Native. ([23717c6381](https://github.com/facebook/react-native/commit/23717c6381a41b1c5f189376bfa5bc73c7a4da87) by [@yungsters](https://github.com/yungsters))
@@ -714,19 +714,21 @@ This file contains all changelogs for releases in the 0.60-0.69 range. Please ch
 ### Added
 
 #### Android specific
+
 - Add `ACCESS_MEDIA_LOCATION` permission to PermisionsAndroid library. ([79db483568](https://github.com/facebook/react-native/commit/79db4835681f5d0149620ec8e0990411cb882241) by [@Skrilltrax](https://github.com/Skrilltrax))
 - Implement `SnapToAlignment` in `ReactScrollView` ([e774c037bc](https://github.com/facebook/react-native/commit/e774c037bce40a4b48e78d2d0a1085a1e4f5a328)), `ReactScrollViewManager` ([c6e5640e87](https://github.com/facebook/react-native/commit/c6e5640e87e7cb5b514ded2c8d4cbb039bd02c5f)), `ReactHorizontalScrollView` ([b12256394e](https://github.com/facebook/react-native/commit/b12256394e34c375942ca508ef79a8c816317976)), `ReactHorizontalScrollViewManager` ([deec1db9fd](https://github.com/facebook/react-native/commit/deec1db9fdf2848941326ba5bebc11f3592a301e)) and update `ScrollView.js` ([a54cfb9e57](https://github.com/facebook/react-native/commit/a54cfb9e5794f196d3834e19762f3aacf47a177d)) and reach parity with iOS ([04184ef851](https://github.com/facebook/react-native/commit/04184ef851c71141009c523ba59838ae6af19ba5)) by [@mdvacca](https://github.com/mdvacca)
 - Show Redbox for C++ errors. ([d6c879edba](https://github.com/facebook/react-native/commit/d6c879edbad068d0f461381875b7fae6db99d18d) by [@sota000](https://github.com/sota000))
 - Added an experimental touch dispatch path ([a2feaeb5f1](https://github.com/facebook/react-native/commit/a2feaeb5f1121a860a9416b5d4e0e96debd45b09) by [@ShikaSD](https://github.com/ShikaSD))
 
 #### iOS specific
+
 - Added `cancelButtonTintColor` prop for `ActionSheetIOS` to change only the text color of the cancel button ([01856633a1](https://github.com/facebook/react-native/commit/01856633a1d42ed3b26e7cc93a007d7948e1f76e) by [@nomi9995](https://github.com/nomi9995))
 - Added [`LSApplicationQueriesSchemes`](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/LaunchServicesKeys.html#//apple_ref/doc/uid/TP40009250-SW14) in info.plist with entries tel, telprompt, http, fb, geo ([b26f277262](https://github.com/facebook/react-native/commit/b26f2772624c863c91fa1ff627b481c92d7562fb) by [@utkarsh-dixit](https://github.com/utkarsh-dixit))
 - Add `UIAccessibilityTraitUpdatesFrequently` to progressBar role ([1a42bd6e97](https://github.com/facebook/react-native/commit/1a42bd6e97ae44a3b38ca552865bac63a6f35da5) by [@jimmy623](https://github.com/jimmy623))
 - Add `asdf-vm` support in `find-node.sh` ([3e7c310b1d](https://github.com/facebook/react-native/commit/3e7c310b1dcf5643920535eea70afa451888792a) by [@pastleo](https://github.com/pastleo))
 
-
 ### Changed
+
 - `ImageBackground` now respects `imageStyle` width and height ([dbd5c3d8e5](https://github.com/facebook/react-native/commit/dbd5c3d8e5e35685be89156194a96cead553a330) by [@Naturalclar](https://github.com/Naturalclar))
 - Rename deprecated `Keyboard.removeEventListener` to `Keyboard.removeListener`. ([8880c09076](https://github.com/facebook/react-native/commit/8880c09076e4727768ace26a74766cbe6f64021c) by [@yungsters](https://github.com/yungsters))
 - Update `Modal`'s mock to not render its children when it is not visible ([ec614c16b3](https://github.com/facebook/react-native/commit/ec614c16b331bf3f793fda5780fa273d181a8492) by [@AntoineDoubovetzky](https://github.com/AntoineDoubovetzky))
@@ -734,8 +736,8 @@ This file contains all changelogs for releases in the 0.60-0.69 range. Please ch
 - React-native/normalize-color now supports Node.js ([65e58f26e1](https://github.com/facebook/react-native/commit/65e58f26e1fbd06b1ae32e2ab3a2616c8eef08e0) by [@yungsters](https://github.com/yungsters))
 - Updated to Contributor Covenant v2.1 ([19f8d2f7da](https://github.com/facebook/react-native/commit/19f8d2f7da13f4524f31acf7aa10cc0aa91b5da4))
 
-
 #### Android specific
+
 - Hermes initialization will no longer need an explicit configuration. ([a40f973f58](https://github.com/facebook/react-native/commit/a40f973f58609ca717fac63bc501d5cf93b748ad) by [@Ashoat](https://github.com/Ashoat))
 - Setting `overflow: scroll` in View component style will clip the children in the View container ([93beb83abe](https://github.com/facebook/react-native/commit/93beb83abef42b92db43ee3bb8b156f486a6c00f) by [@ryancat](https://github.com/ryancat))
 - Native views backing `Animated.View` (w/ JavaScript-driven animations) will no longer be flattened; this should be a transparent change. ([4fdbc44ab5](https://github.com/facebook/react-native/commit/4fdbc44ab5945399338e4ed94ea5611098bd2142) by [@yungsters](https://github.com/yungsters))
@@ -746,6 +748,7 @@ This file contains all changelogs for releases in the 0.60-0.69 range. Please ch
 - Move mavenCentral repo below local paths ([046b02628d](https://github.com/facebook/react-native/commit/046b02628d32eadd6d44160ab79932f6c26b188d) by [@friederbluemle](https://github.com/friederbluemle))
 
 #### iOS specific
+
 - Optimized font handling for iOS ([4ac42d88ef](https://github.com/facebook/react-native/commit/4ac42d88ef60ae3fed7319851d47b93e98ac9afa) by [@Adlai-Holler](https://github.com/Adlai-Holler))
 - Remove iOS 11 version check as minimum deployment is iOS 11 ([398595e074](https://github.com/facebook/react-native/commit/398595e07483fa8f45579de4ca1aee9585e20620) by [@ken0nek](https://github.com/ken0nek))
 - Don't hang app for 60s if packager can't be reached, changed to 10s ([c0e04460f5](https://github.com/facebook/react-native/commit/c0e04460f546dfef2623bff367eb8db8fd75fa34) by [@radex](https://github.com/radex))

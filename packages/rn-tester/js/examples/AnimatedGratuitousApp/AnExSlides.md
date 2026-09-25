@@ -1,4 +1,5 @@
 <br /><br />
+
 # React Native: Animated
 
 ReactEurope 2015, Paris - Spencer Ahrens - Facebook
@@ -13,7 +14,6 @@ ReactEurope 2015, Paris - Spencer Ahrens - Facebook
 
 <br /><br />
 
-
 ## Declarative Interactions
 
 - Wire up inputs (events) to outputs (props) + transforms (springs, easing, etc.)
@@ -23,7 +23,6 @@ ReactEurope 2015, Paris - Spencer Ahrens - Facebook
 
 <br /><br />
 
-
 ## var { Animated } = require('react-native');
 
 - New library soon to be released for React Native
@@ -32,7 +31,6 @@ ReactEurope 2015, Paris - Spencer Ahrens - Facebook
 - This talk -> usage examples, not implementation
 
 <br /><br />
-
 
 ## Gratuitous Animation Demo App
 
@@ -61,7 +59,6 @@ ReactEurope 2015, Paris - Spencer Ahrens - Facebook
 
 <br /><br />
 
-
 ## Tilting Photo
 
 - Pan -> translateX * 2, rotate, opacity (via tracking)
@@ -75,8 +72,8 @@ ReactEurope 2015, Paris - Spencer Ahrens - Facebook
 
 - Static positions defined
 - Listens to events to maybe change selection
- - Springs previous selection back
- - New selection tracks selector
+- Springs previous selection back
+- New selection tracks selector
 - `getTranslateTransform` adds convenience
 
 <br /><br />

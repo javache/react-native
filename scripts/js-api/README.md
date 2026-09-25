@@ -9,11 +9,11 @@ TypeScript build pipeline for React Native's JavaScript API.
 Specifically, it reduces the runtime JavaScript API of `react-native` into two outputs:
 
 - **Generated TypeScript types**\
-Public user types for react-native, shipped to npm\
-`packages/react-native/types_generated/`
+  Public user types for react-native, shipped to npm\
+  `packages/react-native/types_generated/`
 - **‌Public API snapshot**\
-Snapshot file of the public API shape, used by maintainers\
-`packages/react-native/ReactNativeApi.d.ts`
+  Snapshot file of the public API shape, used by maintainers\
+  `packages/react-native/ReactNativeApi.d.ts`
 
 #### Dependencies
 
@@ -44,12 +44,11 @@ This script is run by CI to compare changes to `ReactNativeApi.d.ts` between com
 # Compare two versions of the API snapshot
 yarn js-api-diff <before.d.ts> <after.d.ts>
 ```
+
 ```json
 {
   "result": "BREAKING",
-  "changedApis": [
-    "ViewStyle"
-  ]
+  "changedApis": ["ViewStyle"]
 }
 ```
 

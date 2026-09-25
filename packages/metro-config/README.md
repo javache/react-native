@@ -12,10 +12,7 @@ See [Configuring Metro](https://reactnative.dev/docs/next/metro#configuring-metr
 ## Usage
 
 ```js
-const {
-  getDefaultConfig,
-  mergeConfig,
-} = require('@react-native/metro-config');
+const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
 
 /**
  * Metro configuration

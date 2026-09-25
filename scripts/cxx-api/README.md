@@ -8,14 +8,14 @@ Python build pipeline for React Native's C++ (and Objective-C) API snapshots.
 
 The pipeline produces one `.api` snapshot file per configured **API view × variant** combination:
 
-| Snapshot | Description |
-|---|---|
-| `ReactCommonDebugCxx.api` | Platform-independent C++ API (debug) |
-| `ReactCommonReleaseCxx.api` | Platform-independent C++ API (release) |
-| `ReactAndroidDebugCxx.api` | Android-specific C++ API (debug) |
-| `ReactAndroidReleaseCxx.api` | Android-specific C++ API (release) |
-| `ReactAppleDebugCxx.api` | Apple-specific C++/Obj-C API (debug) |
-| `ReactAppleReleaseCxx.api` | Apple-specific C++/Obj-C API (release) |
+| Snapshot                     | Description                            |
+| ---------------------------- | -------------------------------------- |
+| `ReactCommonDebugCxx.api`    | Platform-independent C++ API (debug)   |
+| `ReactCommonReleaseCxx.api`  | Platform-independent C++ API (release) |
+| `ReactAndroidDebugCxx.api`   | Android-specific C++ API (debug)       |
+| `ReactAndroidReleaseCxx.api` | Android-specific C++ API (release)     |
+| `ReactAppleDebugCxx.api`     | Apple-specific C++/Obj-C API (debug)   |
+| `ReactAppleReleaseCxx.api`   | Apple-specific C++/Obj-C API (release) |
 
 For each view, debug and release variants are generated with different preprocessor definitions (e.g. `REACT_NATIVE_DEBUG` vs `NDEBUG`), since `#ifdef` guards in the source headers can produce a different public API surface per variant.
 
@@ -56,6 +56,7 @@ The Python parser (`parser/`) reads the Doxygen XML output and builds a scope tr
 ## When to use it
 
 The snapshot should be regenerated whenever making intentional changes to the public C++ API surface. This includes additions, removals, and changes to files located in:
+
 - `xplat/js/react-native-github/`
 - `xplat/js/react-native-github/ReactCommon/`
 - `xplat/js/react-native-github/ReactAndroid/`
@@ -66,13 +67,13 @@ The snapshot should be regenerated whenever making intentional changes to the pu
 
 All API views and their variants are defined in `config.yml`. Each view specifies:
 
-| Field | Description |
-|---|---|
-| `inputs` | Directories to scan for headers |
-| `exclude_patterns` | Glob patterns for files to skip |
-| `definitions` | Preprocessor macros to define |
-| `variants` | Named build variants (e.g. debug/release) with extra definitions |
-| `codegen` | Optional codegen platform (`android`, `ios`) to generate TurboModule/Component headers before scanning |
+| Field                 | Description |
+| --------------------- | --- |
+| `inputs`              | Directories to scan for headers |
+| `exclude_patterns`    | Glob patterns for files to skip |
+| `definitions`         | Preprocessor macros to define |
+| `variants`            | Named build variants (e.g. debug/release) with extra definitions |
+| `codegen`             | Optional codegen platform (`android`, `ios`) to generate TurboModule/Component headers before scanning |
 | `private_directories` | Directories whose headers are scanned (they may be transitively included) but should not contribute public symbols. If any public API entity is defined in a private directory, a warning is printed to help catch accidental API exposure. |
 
 ## Snapshot format

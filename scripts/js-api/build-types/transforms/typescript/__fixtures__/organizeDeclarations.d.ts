@@ -5,27 +5,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import * as React from "react";
+import * as React from 'react';
 
-declare type Foo =
-  | "A"
-  | "B"
-declare type Bar =
-  | null
-  | string
-  | number;
+declare type Foo = 'A' | 'B';
+declare type Bar = null | string | number;
 declare class Baz {
   foo: string;
 }
 declare function fn(): void;
 
-export declare type ExportedFoo =
-  | "A"
-  | "B"
-export declare type ExportedBar =
-  | null
-  | string
-  | number;
+export declare type ExportedFoo = 'A' | 'B';
+export declare type ExportedBar = null | string | number;
 export declare class ExportedBaz {
   foo: string;
 }

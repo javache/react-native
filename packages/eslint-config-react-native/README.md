@@ -45,6 +45,6 @@ Add to your eslint config (`.eslintrc`, or `eslintConfig` field in `package.json
 
 ```json
 {
-    "extends": "@react-native"
+  "extends": "@react-native"
 }
 ```

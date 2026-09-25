@@ -5,160 +5,203 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const noop = () => { };
+const noop = () => {};
 
 function testInterval() {
-    clearInterval(null);
-    clearInterval(undefined);
+  clearInterval(null);
+  clearInterval(undefined);
 
-    let handle = setInterval(noop, 0);
-    clearInterval(handle);
+  let handle = setInterval(noop, 0);
+  clearInterval(handle);
 
-    handle = setInterval((arg1: number, arg2: string) => {
-        console.log('arg1', arg1);
-        console.log('arg2', arg2);
-    }, 0, 100, '200');
-    clearInterval(handle);
+  handle = setInterval(
+    (arg1: number, arg2: string) => {
+      console.log('arg1', arg1);
+      console.log('arg2', arg2);
+    },
+    0,
+    100,
+    '200',
+  );
+  clearInterval(handle);
 
-    handle = setInterval((arg1: number, arg2: string) => {
-        console.log('arg1', arg1);
-        console.log('arg2', arg2);
+  handle = setInterval(
+    (arg1: number, arg2: string) => {
+      console.log('arg1', arg1);
+      console.log('arg2', arg2);
+    },
+    0,
     // @ts-expect-error
-    }, 0, 'wrong-type', '200');
-    clearInterval(handle);
+    'wrong-type',
+    '200',
+  );
+  clearInterval(handle);
 
-    // @ts-expect-error
-    handle = setInterval((missingArg: any) => {
-        console.log('missingArg', missingArg);
-    }, 0);
-    clearInterval(handle);
+  // @ts-expect-error
+  handle = setInterval((missingArg: any) => {
+    console.log('missingArg', missingArg);
+  }, 0);
+  clearInterval(handle);
 
-    handle = setInterval((arg1: number) => {
-        console.log('arg1', arg1);
+  handle = setInterval(
+    (arg1: number) => {
+      console.log('arg1', arg1);
+    },
+    0,
+    100,
     // @ts-expect-error
-    }, 0, 100, 'missing-arg');
-    clearInterval(handle);
+    'missing-arg',
+  );
+  clearInterval(handle);
 }
 
 function testTimeout() {
-    clearTimeout(null);
-    clearTimeout(undefined);
+  clearTimeout(null);
+  clearTimeout(undefined);
 
-    let handle = setTimeout(noop, 0);
-    clearTimeout(handle);
+  let handle = setTimeout(noop, 0);
+  clearTimeout(handle);
 
-    handle = setTimeout((arg1: number, arg2: string) => {
-        console.log('arg1', arg1);
-        console.log('arg2', arg2);
-    }, 0, 100, '200');
-    clearTimeout(handle);
+  handle = setTimeout(
+    (arg1: number, arg2: string) => {
+      console.log('arg1', arg1);
+      console.log('arg2', arg2);
+    },
+    0,
+    100,
+    '200',
+  );
+  clearTimeout(handle);
 
-    handle = setTimeout((arg1: number, arg2: string) => {
-        console.log('arg1', arg1);
-        console.log('arg2', arg2);
+  handle = setTimeout(
+    (arg1: number, arg2: string) => {
+      console.log('arg1', arg1);
+      console.log('arg2', arg2);
+    },
+    0,
     // @ts-expect-error
-    }, 0, 'wrong-type', '200');
-    clearTimeout(handle);
+    'wrong-type',
+    '200',
+  );
+  clearTimeout(handle);
 
-    // @ts-expect-error
-    handle = setTimeout((missingArg: any) => {
-        console.log('missingArg', missingArg);
-    }, 0);
-    clearTimeout(handle);
+  // @ts-expect-error
+  handle = setTimeout((missingArg: any) => {
+    console.log('missingArg', missingArg);
+  }, 0);
+  clearTimeout(handle);
 
-    handle = setTimeout((arg1: number) => {
-        console.log('arg1', arg1);
+  handle = setTimeout(
+    (arg1: number) => {
+      console.log('arg1', arg1);
+    },
+    0,
+    100,
     // @ts-expect-error
-    }, 0, 100, 'missing-arg');
-    clearTimeout(handle);
+    'missing-arg',
+  );
+  clearTimeout(handle);
 }
 
 function testImmediate() {
-    clearImmediate(null);
-    clearImmediate(undefined);
+  clearImmediate(null);
+  clearImmediate(undefined);
 
-    let handle = setImmediate(noop);
-    clearImmediate(handle);
+  let handle = setImmediate(noop);
+  clearImmediate(handle);
 
-    handle = setImmediate((arg1: number, arg2: string) => {
-        console.log('arg1', arg1);
-        console.log('arg2', arg2);
-    }, 100, '200');
-    clearImmediate(handle);
+  handle = setImmediate(
+    (arg1: number, arg2: string) => {
+      console.log('arg1', arg1);
+      console.log('arg2', arg2);
+    },
+    100,
+    '200',
+  );
+  clearImmediate(handle);
 
-    handle = setImmediate((arg1: number, arg2: string) => {
-        console.log('arg1', arg1);
-        console.log('arg2', arg2);
+  handle = setImmediate(
+    (arg1: number, arg2: string) => {
+      console.log('arg1', arg1);
+      console.log('arg2', arg2);
+    },
     // @ts-expect-error
-    }, 'wrong-type', '200');
-    clearImmediate(handle);
+    'wrong-type',
+    '200',
+  );
+  clearImmediate(handle);
 
-    // @ts-expect-error
-    handle = setImmediate((missingArg: any) => {
-        console.log('missingArg', missingArg);
-    });
-    clearImmediate(handle);
+  // @ts-expect-error
+  handle = setImmediate((missingArg: any) => {
+    console.log('missingArg', missingArg);
+  });
+  clearImmediate(handle);
 
-    handle = setImmediate((arg1: number) => {
-        console.log('arg1', arg1);
+  handle = setImmediate(
+    (arg1: number) => {
+      console.log('arg1', arg1);
+    },
+    100,
     // @ts-expect-error
-    }, 100, 'missing-arg');
-    clearImmediate(handle);
+    'missing-arg',
+  );
+  clearImmediate(handle);
 }
 
-function testRequestAnimationFrame(){
-    cancelAnimationFrame(null);
-    cancelAnimationFrame(undefined);
+function testRequestAnimationFrame() {
+  cancelAnimationFrame(null);
+  cancelAnimationFrame(undefined);
 
-    let handle = requestAnimationFrame((time: number) => {
-        console.log('time', time);
-    });
-    cancelAnimationFrame(handle);
+  let handle = requestAnimationFrame((time: number) => {
+    console.log('time', time);
+  });
+  cancelAnimationFrame(handle);
 
-    handle = requestAnimationFrame(() => {
-      console.log('no time');
-    });
-    cancelAnimationFrame(handle);
+  handle = requestAnimationFrame(() => {
+    console.log('no time');
+  });
+  cancelAnimationFrame(handle);
 
-    handle = requestAnimationFrame(
-      // @ts-expect-error
-      (notTime: string) => {
-      console.log('argument have to be number', notTime);
-    });
-    cancelAnimationFrame(handle);
-
+  handle = requestAnimationFrame(
     // @ts-expect-error
-    const resultHaveToBeNum: string = requestAnimationFrame(() => {
-      console.log('result have to be number');
-    });
-    cancelAnimationFrame(
-      // @ts-expect-error
-      resultHaveToBeNum
-    );
+    (notTime: string) => {
+      console.log('argument have to be number', notTime);
+    },
+  );
+  cancelAnimationFrame(handle);
+
+  // @ts-expect-error
+  const resultHaveToBeNum: string = requestAnimationFrame(() => {
+    console.log('result have to be number');
+  });
+  cancelAnimationFrame(
+    // @ts-expect-error
+    resultHaveToBeNum,
+  );
 }
 
 function testRequestIdleCallback() {
-    cancelIdleCallback(null);
-    cancelIdleCallback(undefined);
+  cancelIdleCallback(null);
+  cancelIdleCallback(undefined);
 
-    let handle = requestIdleCallback(deadline => {
-        const didTimeout: boolean = deadline.didTimeout;
-        const remaining: number = deadline.timeRemaining();
-        console.log(didTimeout, remaining);
-    });
-    cancelIdleCallback(handle);
+  let handle = requestIdleCallback(deadline => {
+    const didTimeout: boolean = deadline.didTimeout;
+    const remaining: number = deadline.timeRemaining();
+    console.log(didTimeout, remaining);
+  });
+  cancelIdleCallback(handle);
 
-    handle = requestIdleCallback(noop, { timeout: 100 });
-    cancelIdleCallback(handle);
+  handle = requestIdleCallback(noop, {timeout: 100});
+  cancelIdleCallback(handle);
 
-    handle = requestIdleCallback(noop, {});
-    cancelIdleCallback(handle);
+  handle = requestIdleCallback(noop, {});
+  cancelIdleCallback(handle);
 
-    // @ts-expect-error
-    requestIdleCallback(noop, { timeout: 'wrong-type' });
+  // @ts-expect-error
+  requestIdleCallback(noop, {timeout: 'wrong-type'});
 
-    // @ts-expect-error
-    cancelIdleCallback('wrong-type');
+  // @ts-expect-error
+  cancelIdleCallback('wrong-type');
 }
 
 const fetchCopy: WindowOrWorkerGlobalScope['fetch'] = fetch;
@@ -169,36 +212,36 @@ myHeaders.append('Content-Type', 'image/jpeg');
 const controller = new AbortController();
 
 const myInit: RequestInit = {
-    method: 'GET',
-    headers: myHeaders,
-    mode: 'cors',
-    signal: AbortSignal.any([controller.signal, AbortSignal.timeout(5000)]),
+  method: 'GET',
+  headers: myHeaders,
+  mode: 'cors',
+  signal: AbortSignal.any([controller.signal, AbortSignal.timeout(5000)]),
 };
 
 const myRequest = new Request('flowers.jpg');
 
 fetch(myRequest, myInit)
-    .then(response => {
-        console.log(response.type);
-        console.log(response.url);
-        console.log(response.status);
-        console.log(response.ok);
-        console.log(response.statusText);
-        console.log(response.headers);
+  .then(response => {
+    console.log(response.type);
+    console.log(response.url);
+    console.log(response.status);
+    console.log(response.ok);
+    console.log(response.statusText);
+    console.log(response.headers);
 
-        return response.blob();
-    })
-    .then(blob => {
-        const init = { status: 200, statusText: 'SuperSmashingGreat!' };
-        const myResponse = new Response(blob, init);
-    });
+    return response.blob();
+  })
+  .then(blob => {
+    const init = {status: 200, statusText: 'SuperSmashingGreat!'};
+    const myResponse = new Response(blob, init);
+  });
 
 const xmlRequest = new XMLHttpRequest();
 
 xmlRequest.addEventListener('load', ev => {
-    console.log(ev.lengthComputable);
-    console.log(ev.loaded);
-    console.log(ev.total);
+  console.log(ev.lengthComputable);
+  console.log(ev.loaded);
+  console.log(ev.total);
 });
 
 const test = new URLSearchParams();
@@ -213,18 +256,18 @@ const blob = new Blob([blobA, textA]);
 const reader = new FileReader();
 
 reader.onloadend = ev => {
-    console.log(ev.target);
-    console.log(ev.loaded);
+  console.log(ev.target);
+  console.log(ev.loaded);
 };
 
 reader.readAsText(new Blob());
 
 fetch('https://example.org/post-image', {
-    body: { uri: 'file:///data/tmp/qwerad3.jpg' },
-    headers: {
-        'Content-Type': 'type',
-    },
-    method: 'POST',
+  body: {uri: 'file:///data/tmp/qwerad3.jpg'},
+  headers: {
+    'Content-Type': 'type',
+  },
+  method: 'POST',
 });
 
 const socket = new WebSocket('wss://echo.websocket.org');
@@ -239,6 +282,6 @@ socket.addEventListener('error', e => console.log(e.message));
 socket.onerror = e => console.log(e.message);
 
 const formData = new FormData();
-formData.append('file', { fileName: 'example' });
+formData.append('file', {fileName: 'example'});
 console.log(formData.getParts());
 console.log(formData.getAll('username'));

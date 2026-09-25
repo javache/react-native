@@ -10,9 +10,9 @@ exports[`sortProperties should divide type properties into methods, functions an
 
 type A = {
   a: string;
-  \\"ab\\": string;
+  ab: string;
   b: string;
-  \\"ba\\": string;
+  ba: string;
   aFn: () => void;
   bFn: () => void;
   aMethod(): void;

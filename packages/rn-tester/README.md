@@ -5,6 +5,7 @@ The RNTester showcases React Native views and modules.
 ## Running this app
 
 Before running the app, make sure you ran:
+
 ```sh
 git clone https://github.com/facebook/react-native.git
 cd react-native
@@ -20,6 +21,7 @@ fabric_enabled = false
 ```
 
 Also, if you previously built RNTester with fabric enabled, you might need to clean up the build files and Pods.
+
 ```sh
 # Clean the generated files and folders to clean install RNTester
 cd packages/rn-tester
@@ -29,6 +31,7 @@ yarn clean-ios
 If you are still having a problem after doing the clean up (which can happen if you have built RNTester with older React Native versions where files were generated inside the react-native folder.), the best way might be to clean-install react-native (e.g. remove node_modules and yarn install). If after cleaning up, you are still having issues, you might also want to try `RCT_NEW_ARCH_ENABLED=0 bundle exec pod install` to disable the new architecture as it might be conflicting.
 
 Both macOS and Xcode are required.
+
 1. `cd packages/rn-tester`
 2. Install [Bundler](https://bundler.io/): `gem install bundler`. We use bundler to install the right version of [CocoaPods](https://cocoapods.org/) locally.
 3. Install Bundler and CocoaPods dependencies: `bundle install && bundle exec pod install` or `yarn prepare-ios`.

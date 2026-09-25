@@ -9,6 +9,7 @@ alwaysRun: true
 <!-- @ref glob:packages/react-native/ReactAndroid/** — JNI and Android native boundary -->
 <!-- @ref glob:packages/react-native/React/** — Apple native boundary -->
 <!-- @ref glob:.github/workflows/** — workflow supply-chain surface -->
+
 # Security and secrets
 
 Review only defects with a concrete attacker-controlled path or credential

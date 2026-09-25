@@ -12,7 +12,6 @@
 - **TurboModules**: Revert the rejection of `ArrayBuffer` as a TurboModule `EventEmitter` payload. C++ TurboModules could declare `EventEmitter<ArrayBuffer>` in 0.87 and it generated working code, so rejecting it at codegen time broke those builds ([070af03ab3](https://github.com/react/react-native/commit/070af03ab3b9584473b0ffb1a837ac252d127ec9) by [@fabriziocucci](https://github.com/fabriziocucci))
 - **TypeScript**: Restore the `.js` fallback for legacy deep imports of untyped modules, so `react-native/Libraries/*` specifiers resolve again under the `react-native-legacy-deep-imports` condition ([579212e15c](https://github.com/react/react-native/commit/579212e15c9197d6c614cfeb4561e4a85956ee3b) by [@fabriziocucci](https://github.com/fabriziocucci))
 
-
 ## v0.88.0-rc.1
 
 ### Added
@@ -263,7 +262,7 @@
 
 ### Breaking
 
-- **Appearance**: Fix return type of `useColorScheme()` hook (now  `ColorSchemeName | null`) ([ef6463c25d](https://github.com/react/react-native/commit/ef6463c25d78990386a15bb26319d1d4d224df14) by [@huntie](https://github.com/huntie))
+- **Appearance**: Fix return type of `useColorScheme()` hook (now `ColorSchemeName | null`) ([ef6463c25d](https://github.com/react/react-native/commit/ef6463c25d78990386a15bb26319d1d4d224df14) by [@huntie](https://github.com/huntie))
 - **Appearance**: `useColorScheme()` no longer returns `'unspecified'` (this was always the case, but is a breaking type change) ([8ac88f481a](https://github.com/react/react-native/commit/8ac88f481a51cec28adfe985382ac7b3648921e5) by [@huntie](https://github.com/huntie))
 - **CLI**: The `react-native/core-cli-utils` package is no longer published. It remains available in the React Native repo as a reference implementation. ([9c3fddf9cd](https://github.com/react/react-native/commit/9c3fddf9cd03788a57ffca0f195bb92b84fab281) by [@huntie](https://github.com/huntie))
 - **Hermes**: Remove Legacy Hermes from C++ code ([f9476256bd](https://github.com/react/react-native/commit/f9476256bd1b5d56f46f79bb31a32e77e8e23fe6) by [@cipolleschi](https://github.com/cipolleschi))
@@ -610,6 +609,7 @@
 
 - **Runtime:** Use explicit `ReactInstanceManager.mHasStartedDestroyingLock` instead of using `ReactInstanceManager.mHasStartedDestroying` ([cdfba520fa](https://github.com/react/react-native/commit/cdfba520fa56a6b3dbb133d9c8060e4e698bc8a0) by [@jingjing2222](https://github.com/jingjing2222))
 - **Runtime:** Do not synchronize on `java.lang.Boolean`. ([@821045a24f](https://github.com/react/react-native/commit/821045a24f07f798351c72d23a01720a2123049d) by [Yqwed](https://github.com/yqwed))
+
 ### Changed
 
 - **Hermes:** Bump Hermes V1 to 250829098.0.16 ([95538111bf](https://github.com/react/react-native/commit/95538111bf24b5d5269724714e415b38b6395d1a) by [@gabrieldonadel](https://github.com/gabrieldonadel))
@@ -896,7 +896,7 @@
 - **React Native DevTools**: Page targets returned from `/json/list` will no longer set `prefersFuseboxFrontend` ([421de23470](https://github.com/facebook/react-native/commit/421de234700805cec1277940187020e6baa5c8eb) by [@huntie](https://github.com/huntie))
 - **React Native DevTools**: Suppress LogBox warnings and errors during CDP performance tracing ([a308014d87](https://github.com/facebook/react-native/commit/a308014d879dffc142335aff344ace2bfd77eb26) by [@emily8rown](https://github.com/emily8rown))
 - **React**: Make React Native consume 250829098.0.6 ([4fb33022bc](https://github.com/facebook/react-native/commit/4fb33022bc57dd719ce46a1a074b029cdfd8ff24) by [@cipolleschi](https://github.com/cipolleschi))
-- **Runtime**: `cancelAnimationFrame`, `clearImmediate`, `clearTimeout` and  `clearInterval` do nothing If there is no callback associated the given handle ([9d3cc383ba](https://github.com/facebook/react-native/commit/9d3cc383ba9b45ef28721a1ae81b2d0429363bf5) by [@retyui](https://github.com/retyui))
+- **Runtime**: `cancelAnimationFrame`, `clearImmediate`, `clearTimeout` and `clearInterval` do nothing If there is no callback associated the given handle ([9d3cc383ba](https://github.com/facebook/react-native/commit/9d3cc383ba9b45ef28721a1ae81b2d0429363bf5) by [@retyui](https://github.com/retyui))
 - **Runtime**: Changed how React changes are commited to the Shadow Tree (behind a feature flag) ([45b4817414](https://github.com/facebook/react-native/commit/45b4817414928c9bfa0b055bb09533ac177cada6) by [@j-piasecki](https://github.com/j-piasecki))
 - **Runtime**: Importing `hairlineWidth` no longer eagerly initializes the `PixelRatio` TurboModule. ([e11a2f07e8](https://github.com/facebook/react-native/commit/e11a2f07e8fd962adb76ff55a9b159e8ca3ae51f) by [@yungsters](https://github.com/yungsters))
 - **Runtime**: Logs created by `console.error` that begin with "Warning: " will no longer be treated as warnings. These call sites should migrate to using `console.warn` instead. ([5ab418460b](https://github.com/facebook/react-native/commit/5ab418460b573a02feb5e394392ac87a8b79848b) by [@yungsters](https://github.com/yungsters))
@@ -1020,7 +1020,6 @@
 ### Security
 
 - **Dependencies**: Bump to `chromium-edge-launcher@^0.3.0` to drop `rimraf` ([1f2312687b](https://github.com/facebook/react-native/commit/1f2312687bae96d8a1f7bbd5d44ec628859656eb) by [@kitten](https://github.com/kitten))
-
 
 ## v0.84.0
 
@@ -1305,6 +1304,7 @@
 ### Added
 
 #### Android specific
+
 - **Gradle:** Expose `oscompat` headers via prefab ([b4da323c8e](https://github.com/facebook/react-native/commit/b4da323c8ec5ab7fe0171196dbe8ea50db49b96e) by [@war-in](https://github.com/war-in))
 
 ### Fixed
@@ -1494,6 +1494,7 @@ None
 - **ViewManagerInterfaces:** Migrate ViewManagerInterfaces to kotlin. Some types in code generated ViewManagerInterfaces might differ. e.g. this will start enforcing nullability in parameters of viewManagerInterface methods (e.g. String commands parameters are not nullable, view params are not nullable in any method, etc) ([79ca9036d3](https://github.com/facebook/react-native/commit/79ca9036d39c16cd115dc0427cb7092f358ac47e) by [@mdvacca](https://github.com/mdvacca))
 
 #### iOS Specific
+
 - **New Architecture:** Removed the opt-out from the New Architecture. ([83e6eaf693](https://github.com/facebook/react-native/commit/83e6eaf693f967b7870a5d4896cbb799206a14f0) by [@cipolleschi](https://github.com/cipolleschi))
 
 ### Added
@@ -1686,7 +1687,6 @@ None
 - **Codegen**: Fix outputs when iOS artifacts generator is run from Xcode script phase ([c0290329cd](https://github.com/facebook/react-native/commit/c0290329cdb1771ec087c8552049a287c67259c6) by [@kitten](https://github.com/kitten))
 - **Events**: Raised the maximum number of pointers tracked at the same time to 17 ([58bd51e7e2](https://github.com/facebook/react-native/commit/58bd51e7e23cbd1f5f0f360587610c9fc70c0d76) by [@j-piasecki](https://github.com/j-piasecki))
 
-
 ## v0.81.5
 
 ### Fixed
@@ -1737,7 +1737,6 @@ None
 ## v0.81.1
 
 ### Added
-
 
 #### iOS specific
 
@@ -1853,7 +1852,7 @@ None
 - **LegacyArchitecture:** Raise logLevel of `LegacyArchitecture` classes when minimizing of legacy architecture is enabled ([0d1cde7f36](https://github.com/facebook/react-native/commit/0d1cde7f36e9de72c997fc812bba023694c2a369) by [@mdvacca](https://github.com/mdvacca))
 - **Metro:** Metro to ^0.83.1 ([e247be793c](https://github.com/facebook/react-native/commit/e247be793c70a374955d798d8cbbc6eba58080ec) by [@motiz88](https://github.com/motiz88))
 - **React DevTools:** Bumped React DevTools to `6.1.5` ([c302902b1d](https://github.com/facebook/react-native/commit/c302902b1db7e8f8ac5b61472c095dc0755d6d1c) by [@hoxyq](https://github.com/hoxyq))
-- **RuntimeExecutor:** `RuntimeExecutor`:  Remove noexcept from sync ui thread utils ([7ef278af50](https://github.com/facebook/react-native/commit/7ef278af505deba6b8a47876c6824f9a7fefa427) by [@RSNara](https://github.com/RSNara))
+- **RuntimeExecutor:** `RuntimeExecutor`: Remove noexcept from sync ui thread utils ([7ef278af50](https://github.com/facebook/react-native/commit/7ef278af505deba6b8a47876c6824f9a7fefa427) by [@RSNara](https://github.com/RSNara))
 - **Typescript:** Bump `types/react` to `19.1` ([3ae9328571](https://github.com/facebook/react-native/commit/3ae932857174e9c39cd5d9c53922f849aa1401b1) by [@gabrieldonadel](https://github.com/gabrieldonadel))
 
 #### Android specific
@@ -1929,6 +1928,7 @@ None
 - **Yoga:** Fixed nodes with `display: contents` set being cloned with the wrong owner ([d4b36b0300](https://github.com/facebook/react-native/commit/d4b36b03003eb2de9eaf5b57bb639bae8cc12f20) by [@j-piasecki](https://github.com/j-piasecki))
 
 #### Android specific
+
 - **API:** Make accessors inside HeadlessJsTaskService open again ([7ef57163cb](https://github.com/facebook/react-native/commit/7ef57163cb016317e43e563da7ea181989f6abca) by [@cortinico](https://github.com/cortinico))
 - **BaseViewManager:** Remove focus change listener when dropping/recycling view instances ([94cbf206d6](https://github.com/facebook/react-native/commit/94cbf206d607477257c65039d97565a79e94c7dd) by [@Abbondanzo](https://github.com/Abbondanzo))
 - **BoringLayout:** Include fallback line spacing in `BoringLayout` ([2fe6c1a947](https://github.com/facebook/react-native/commit/2fe6c1a94758223a5342fdfa90163971eb588e6a) by [@NickGerleman](https://github.com/NickGerleman))
@@ -3122,26 +3122,21 @@ See [CHANGELOG-0.5x](./CHANGELOG-0.5x.md#v0571)
 
 See [CHANGELOG-0.5x](./CHANGELOG-0.5x.md#v0570)
 
-
 ## v0.56.0
 
 See [CHANGELOG-0.5x](./CHANGELOG-0.5x.md#v0560)
-
 
 ## v0.55.0
 
 See [CHANGELOG-0.5x](./CHANGELOG-0.5x.md#v0550)
 
-
 ## v0.54.0
 
 See [CHANGELOG-0.5x](./CHANGELOG-0.5x.md#v0540)
 
-
 ## v0.53.0
 
 See [CHANGELOG-0.5x](./CHANGELOG-0.5x.md#v0530)
-
 
 ## v0.52.0
 

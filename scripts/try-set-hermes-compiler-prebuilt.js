@@ -6,21 +6,31 @@
  */
 
 // @flow
-const { execSync } = require('node:child_process');
+const {execSync} = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 
 function main() {
- const packageJsonPath = path.join(__dirname, '../packages/react-native/package.json');
- const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
- const hermesCompilerVersion = packageJson.dependencies['hermes-compiler'];
+  const packageJsonPath = path.join(
+    __dirname,
+    '../packages/react-native/package.json',
+  );
+  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+  const hermesCompilerVersion = packageJson.dependencies['hermes-compiler'];
 
- if (hermesCompilerVersion === '0.0.0') {
-   console.log(`Hermes compiler version not set. Updating to the latest-v1 release.`);
-   execSync('yarn workspace react-native add hermes-compiler@latest-v1 --exact', { stdio: 'inherit' });
- } else {
-   console.log(`Hermes compiler version set to ${hermesCompilerVersion}. Not setting hermes.`);
- }
+  if (hermesCompilerVersion === '0.0.0') {
+    console.log(
+      `Hermes compiler version not set. Updating to the latest-v1 release.`,
+    );
+    execSync(
+      'yarn workspace react-native add hermes-compiler@latest-v1 --exact',
+      {stdio: 'inherit'},
+    );
+  } else {
+    console.log(
+      `Hermes compiler version set to ${hermesCompilerVersion}. Not setting hermes.`,
+    );
+  }
 }
 
 main();

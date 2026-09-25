@@ -6,23 +6,23 @@
  */
 
 type A = {
-  bFn: () => void,
-  aFn: () => void,
+  bFn: () => void;
+  aFn: () => void;
   bMethod(): void;
   aMethod(): void;
-  b: string,
-  a: string,
-  "ba": string,
-  "ab": string,
-}
+  b: string;
+  a: string;
+  ba: string;
+  ab: string;
+};
 
 interface B {
-  bFn: () => void,
-  aFn: () => void,
+  bFn: () => void;
+  aFn: () => void;
   bMethod(): void;
   aMethod(): void;
-  b: string,
-  a: string,
+  b: string;
+  a: string;
 }
 
 declare class C {
@@ -37,12 +37,12 @@ declare class C {
 }
 
 type Fn = (arg: {
-  bFn: () => void,
-  aFn: () => void,
+  bFn: () => void;
+  aFn: () => void;
   bMethod(): void;
   aMethod(): void;
-  b: string,
-  a: string,
+  b: string;
+  a: string;
 }) => void;
 
 enum E {

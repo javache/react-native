@@ -77,6 +77,7 @@ Open the JavaScript debugger for a given CDP target. Must be provided with one o
 <summary>Example</summary>
 
     curl -X POST 'http://localhost:8081/open-debugger?target=<targetId>'
+
 </details>
 
 ### WebSocket endpoints

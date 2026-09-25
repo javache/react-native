@@ -16,8 +16,8 @@ import {
 } from '@react-native/asset-utils';
 ```
 
-| Export | Signature | Notes |
-|---|---|---|
+| Export                         | Signature | Notes |
+| ------------------------------ | --- | --- |
 | `getAndroidResourceFolderName` | `(asset: PackagerAsset, scale: number) => string` | e.g. `drawable-xhdpi`; non-drawable types resolve to `raw` |
 | `getAndroidResourceIdentifier` | `(asset: PackagerAsset) => string` | Sanitised resource name |
-| `drawableFileTypes` | `Set<string>` | Asset types that map to a `drawable-*` folder |
+| `drawableFileTypes`            | `Set<string>` | Asset types that map to a `drawable-*` folder |

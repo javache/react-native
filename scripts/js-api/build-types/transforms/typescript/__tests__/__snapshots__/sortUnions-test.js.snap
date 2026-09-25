@@ -21,6 +21,6 @@ type E = AFoo | BFoo | number | string | {
 } | {
   foo: string;
 };
-type F = \\"A\\" | \\"B\\" | \\"C\\" | \\"D\\";
-type G = \\"A\\" | \\"B\\" | \\"C\\" | \\"D\\" | 0 | 1 | 2 | 3;"
+type F = 'A' | 'B' | 'C' | 'D';
+type G = 'A' | 'B' | 'C' | 'D' | 0 | 1 | 2 | 3;"
 `;

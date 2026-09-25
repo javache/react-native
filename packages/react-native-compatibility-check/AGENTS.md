@@ -5,6 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Overview
 
 This package is a **type checker for React Native's JS/Native boundary**. It detects backwards-incompatible changes between JavaScript and Native code to prevent crashes, particularly useful for:
+
 - Local development (detecting when native rebuild is needed)
 - Over-the-air (OTA) updates
 - Server Components with React Native
@@ -22,13 +23,17 @@ Schema (old) ──┘
 ```
 
 ### Stage 1: TypeDiffing (`TypeDiffing.js`)
+
 **Pure type comparison** - Compares two type annotations and returns all structural differences.
+
 - Reports ALL differences between types (added/removed properties, union changes, etc.)
 - Returns `ComparisonResult` with status: `matching`, `skipped`, `properties`, `members`, `unionMembers`, `functionChange`, `positionalTypeChange`, `nullableChange`, or `error`
 - **Must remain pure** - no React Native-specific logic belongs here
 
 ### Stage 2: VersionDiffing (`VersionDiffing.js`)
+
 **Semantic safety analysis** - Interprets TypeDiffing results in the context of React Native's boundary.
+
 - Determines if changes are safe based on **data flow direction**:
   - `toNative`: Data flows from JS to Native (method parameters, component props)
   - `fromNative`: Data flows from Native to JS (return values, getConstants)
@@ -40,7 +45,9 @@ Schema (old) ──┘
   - Making required properties optional when sending TO native = **UNSAFE**
 
 ### Stage 3: ErrorFormatting (`ErrorFormatting.js`)
+
 **Human-readable output** - Converts deep error objects into formatted strings.
+
 - **Must remain pure** - no business logic
 
 ### Supporting Files
@@ -74,6 +81,7 @@ type DiffSummary = {
 ## Commands
 
 Run tests from the react-native-compatibility-check directory:
+
 ```bash
 cd packages/react-native-compatibility-check
 
@@ -92,18 +100,22 @@ yarn test --testNamePattern="compareTypes on unions"
 ## Testing Patterns
 
 ### Test Fixtures
+
 Tests use Flow files in `__tests__/__fixtures__/` parsed by `@react-native/codegen`:
+
 - **Native Modules**: `native-module-*/NativeModule.js.flow`
 - **Native Components**: `native-component-*/NativeComponent.js.flow`
 
 The `getTestSchema()` utility parses these fixtures into schema objects.
 
 ### Test Structure
+
 - **TypeDiffing-test.js**: Tests pure type comparison logic
 - **VersionDiffing-test.js**: Tests safety analysis with boundary direction
 - **ErrorFormatting-test.js**: Tests error message generation (uses snapshots)
 
 ### Adding Test Cases
+
 1. Create a new fixture directory under `__tests__/__fixtures__/`
 2. Add a `.js.flow` file defining a Native Module or Component
 3. Load it in tests using `getTestSchema(__dirname, '__fixtures__', 'fixture-name', 'FileName.js.flow')`
@@ -111,41 +123,46 @@ The `getTestSchema()` utility parses these fixtures into schema objects.
 ## Design Principles
 
 ### Separation of Concerns
+
 - **TypeDiffing**: Pure type comparison. Should work for ANY JavaScript types.
 - **VersionDiffing**: React Native boundary semantics. Only place for RN-specific logic.
 - **ErrorFormatting**: Presentation only. No business logic.
 
 ### Module-scope Type Registries
+
 `TypeDiffing.js` uses module-scope variables (`_newerTypesReg`, `_olderTypesReg`, `_newerEnumMap`, `_olderEnumMap`) to avoid threading lookups through all recursive calls. This is acceptable because the logic is serial.
 
 ### Structural Type Comparison
+
 Types are compared structurally, not nominally. Two different type aliases with identical structure are considered matching.
 
 ## Compatibility Rules Reference
 
 ### Data Flowing TO Native (parameters, props)
-| Change | Safe? |
-|--------|-------|
-| Add optional property | ✅ |
-| Add required property | ❌ |
-| Remove property | ✅ |
-| Make property optional | ❌ |
-| Add union member | ❌ |
-| Remove union member | ✅ |
-| Add enum member | ❌ |
-| Remove enum member | ✅ |
+
+| Change                 | Safe? |
+| ---------------------- | ----- |
+| Add optional property  | ✅    |
+| Add required property  | ❌    |
+| Remove property        | ✅    |
+| Make property optional | ❌    |
+| Add union member       | ❌    |
+| Remove union member    | ✅    |
+| Add enum member        | ❌    |
+| Remove enum member     | ✅    |
 
 ### Data Flowing FROM Native (return values, constants)
-| Change | Safe? |
-|--------|-------|
-| Add optional property | ✅ |
-| Add required property | ❌ |
-| Remove property | ✅ |
-| Make property required | ❌ |
-| Add union member | ✅ |
-| Remove union member | ❌ |
-| Add enum member | ✅ |
-| Remove enum member | ❌ |
+
+| Change                 | Safe? |
+| ---------------------- | ----- |
+| Add optional property  | ✅    |
+| Add required property  | ❌    |
+| Remove property        | ✅    |
+| Make property required | ❌    |
+| Add union member       | ✅    |
+| Remove union member    | ❌    |
+| Add enum member        | ✅    |
+| Remove enum member     | ❌    |
 
 ## Common Gotchas
 
