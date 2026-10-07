@@ -51,6 +51,7 @@ struct ReactInstanceData {
   std::shared_ptr<NativeAnimatedNodesManagerProvider>
       animatedNodesManagerProvider;
   ReactInstance::BindingsInstallFunc bindingsInstallFunc;
+  ReactHost::CallInvokerBindingsInstallFunc callInvokerBindingsInstallFunc;
   std::shared_ptr<AnimationChoreographer> animationChoreographer;
 };
 
@@ -67,7 +68,8 @@ ReactHost::ReactHost(
     std::shared_ptr<NativeAnimatedNodesManagerProvider>
         animatedNodesManagerProvider,
     ReactInstance::BindingsInstallFunc bindingsInstallFunc,
-    std::shared_ptr<AnimationChoreographer> animationChoreographer)
+    std::shared_ptr<AnimationChoreographer> animationChoreographer,
+    CallInvokerBindingsInstallFunc callInvokerBindingsInstallFunc)
     : reactInstanceConfig_(std::move(reactInstanceConfig)) {
   auto componentRegistryFactory =
       mountingManager->getComponentRegistryFactory();
@@ -84,6 +86,8 @@ ReactHost::ReactHost(
       .logBoxSurfaceDelegate = logBoxSurfaceDelegate,
       .animatedNodesManagerProvider = animatedNodesManagerProvider,
       .bindingsInstallFunc = std::move(bindingsInstallFunc),
+      .callInvokerBindingsInstallFunc =
+          std::move(callInvokerBindingsInstallFunc),
       .animationChoreographer = std::move(animationChoreographer)});
   if (!reactInstanceData_->contextContainer
            ->find<MessageQueueThreadFactory>(MessageQueueThreadFactoryKey)
@@ -278,6 +282,9 @@ void ReactHost::createReactInstance() {
            std::weak_ptr<IMountingManager>(reactInstanceData_->mountingManager),
        logger = reactInstanceData_->logger,
        bindingsInstallFunc = reactInstanceData_->bindingsInstallFunc,
+       callInvokerBindingsInstallFunc =
+           reactInstanceData_->callInvokerBindingsInstallFunc,
+       jsInvoker,
        turboModuleManager =
            std::move(turboModuleManager)](jsi::Runtime& runtime) mutable {
         if (logger) {
@@ -298,6 +305,9 @@ void ReactHost::createReactInstance() {
 
         if (bindingsInstallFunc) {
           bindingsInstallFunc(runtime);
+        }
+        if (callInvokerBindingsInstallFunc) {
+          callInvokerBindingsInstallFunc(runtime, jsInvoker);
         }
       });
 }
