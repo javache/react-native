@@ -25,8 +25,7 @@ const cases = [
     allowFontScaling: undefined,
     maxFontSizeMultiplier: undefined,
     expectedMultiplier: 2,
-    // Known bug: TextInput keeps its cached size; this should be 2.
-    expectedTextInputMultiplier: 1,
+    expectedTextInputMultiplier: 2,
   },
   {
     name: 'disabled font scaling',
@@ -40,8 +39,7 @@ const cases = [
     allowFontScaling: undefined,
     maxFontSizeMultiplier: 1.5,
     expectedMultiplier: 1.5,
-    // Known bug: TextInput keeps its cached size; this should be 1.5.
-    expectedTextInputMultiplier: 1,
+    expectedTextInputMultiplier: 1.5,
   },
 ];
 
