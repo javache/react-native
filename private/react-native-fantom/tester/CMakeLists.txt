@@ -94,6 +94,7 @@ add_react_common_subdir(react/renderer/components/modal)
 add_react_common_subdir(react/renderer/components/root)
 add_react_common_subdir(react/renderer/components/scrollview)
 add_react_common_subdir(react/renderer/components/text)
+add_react_common_subdir(react/renderer/components/textinput)
 add_react_common_subdir(react/renderer/components/view)
 add_react_common_subdir(react/renderer/consistency)
 add_react_common_subdir(react/renderer/core)
@@ -236,6 +237,7 @@ target_link_libraries(fantom_tester
     rrc_root
     rrc_scrollview
     rrc_text
+    rrc_textinput
     rrc_view
     runtimeexecutor
     yogacore
