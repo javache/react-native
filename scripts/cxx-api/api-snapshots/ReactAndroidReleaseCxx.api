@@ -2419,6 +2419,11 @@ class facebook::react::TouchEventEmitter : public facebook::react::EventEmitter 
   public void onTouchStart(facebook::react::TouchEvent event) const;
 }
 
+class facebook::react::TouchesHelper : public facebook::jni::JavaClass<facebook::react::TouchesHelper> {
+  public static constexpr auto * kJavaDescriptor;
+  public static void registerNatives();
+}
+
 class facebook::react::TracingDelegate : public facebook::react::jsinspector_modern::HostTargetTracingDelegate {
   public TracingState getTracingState();
   public size_t registerTracingStateListener(facebook::react::TracingStateListener listener);
