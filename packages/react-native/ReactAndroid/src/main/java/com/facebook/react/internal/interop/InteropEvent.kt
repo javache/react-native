@@ -7,7 +7,7 @@
 
 package com.facebook.react.internal.interop
 
-import com.facebook.react.bridge.WritableMap
+import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.common.annotations.internal.InteropLegacyArchitecture
 import com.facebook.react.common.annotations.internal.LegacyArchitectureLogger
 import com.facebook.react.uimanager.events.Event
@@ -20,14 +20,14 @@ import com.facebook.react.uimanager.events.Event
 @InteropLegacyArchitecture
 internal class InteropEvent(
     @get:JvmName("eventName") val interopEventName: String,
-    @get:JvmName("eventData") val eventData: WritableMap?,
+    @get:JvmName("eventData") val eventData: ReadableMap?,
     surfaceId: Int,
     viewTag: Int,
 ) : Event<InteropEvent>(surfaceId, viewTag) {
 
   override fun getEventName(): String = interopEventName
 
-  override fun getEventData(): WritableMap? = eventData
+  override fun getEventData(): ReadableMap? = eventData
 
   private companion object {
     init {

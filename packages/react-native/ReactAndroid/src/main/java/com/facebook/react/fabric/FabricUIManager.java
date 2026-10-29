@@ -1180,14 +1180,14 @@ public class FabricUIManager
 
   @Deprecated
   @Override
-  public void receiveEvent(int reactTag, String eventName, @Nullable WritableMap params) {
+  public void receiveEvent(int reactTag, String eventName, @Nullable ReadableMap params) {
     receiveEvent(View.NO_ID, reactTag, eventName, false, params, EventCategoryDef.UNSPECIFIED);
   }
 
   @Deprecated
   @Override
   public void receiveEvent(
-      int surfaceId, int reactTag, String eventName, @Nullable WritableMap params) {
+      int surfaceId, int reactTag, String eventName, @Nullable ReadableMap params) {
     receiveEvent(surfaceId, reactTag, eventName, false, params, EventCategoryDef.UNSPECIFIED);
   }
 
@@ -1212,7 +1212,7 @@ public class FabricUIManager
       int reactTag,
       String eventName,
       boolean canCoalesceEvent,
-      @Nullable WritableMap params,
+      @Nullable ReadableMap params,
       @EventCategoryDef int eventCategory) {
     receiveEvent(
         surfaceId,
@@ -1248,7 +1248,7 @@ public class FabricUIManager
       int reactTag,
       String eventName,
       boolean canCoalesceEvent,
-      @Nullable WritableMap params,
+      @Nullable ReadableMap params,
       @EventCategoryDef int eventCategory,
       boolean experimentalIsSynchronous) {
     receiveEvent(
@@ -1284,7 +1284,7 @@ public class FabricUIManager
       int reactTag,
       String eventName,
       boolean canCoalesceEvent,
-      @Nullable WritableMap params,
+      @Nullable ReadableMap params,
       @EventCategoryDef int eventCategory,
       boolean experimentalIsSynchronous,
       long eventTimestamp) {

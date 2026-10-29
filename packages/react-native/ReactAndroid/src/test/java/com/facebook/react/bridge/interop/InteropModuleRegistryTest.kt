@@ -11,7 +11,7 @@
 package com.facebook.react.bridge.interop
 
 import com.facebook.react.bridge.JavaScriptModule
-import com.facebook.react.bridge.WritableMap
+import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.common.annotations.UnstableReactNativeAPI
 import com.facebook.react.internal.featureflags.ReactNativeFeatureFlags
 import com.facebook.react.internal.featureflags.ReactNativeFeatureFlagsDefaults
@@ -32,7 +32,7 @@ class InteropModuleRegistryTest {
   @Suppress("DEPRECATION")
   private class FakeRCTEventEmitter : RCTEventEmitter {
     @Deprecated("Use [RCTModernEventEmitter.receiveEvent] instead")
-    override fun receiveEvent(targetTag: Int, eventName: String, params: WritableMap?) = Unit
+    override fun receiveEvent(targetTag: Int, eventName: String, params: ReadableMap?) = Unit
   }
 
   @Before

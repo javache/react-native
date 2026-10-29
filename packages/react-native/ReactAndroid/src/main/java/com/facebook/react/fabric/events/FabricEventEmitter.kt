@@ -8,7 +8,7 @@
 package com.facebook.react.fabric.events
 
 import android.os.SystemClock
-import com.facebook.react.bridge.WritableMap
+import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.fabric.FabricUIManager
 import com.facebook.react.uimanager.events.EventCategoryDef
 import com.facebook.react.uimanager.events.RCTModernEventEmitter
@@ -22,7 +22,7 @@ internal class FabricEventEmitter(private val uiManager: FabricUIManager) : RCTM
       eventName: String,
       canCoalesceEvent: Boolean,
       customCoalesceKey: Int,
-      params: WritableMap?,
+      params: ReadableMap?,
       @EventCategoryDef category: Int,
   ) {
     receiveEvent(
@@ -43,7 +43,7 @@ internal class FabricEventEmitter(private val uiManager: FabricUIManager) : RCTM
       eventName: String,
       canCoalesceEvent: Boolean,
       customCoalesceKey: Int,
-      params: WritableMap?,
+      params: ReadableMap?,
       @EventCategoryDef category: Int,
       eventTimestamp: Long,
   ) {

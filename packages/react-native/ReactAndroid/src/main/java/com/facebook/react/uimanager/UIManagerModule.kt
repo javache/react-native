@@ -551,11 +551,11 @@ public open class UIManagerModule : ReactContextBaseJavaModule, LifecycleEventLi
     return null
   }
 
-  override fun receiveEvent(reactTag: Int, eventName: String, event: WritableMap?) {
+  override fun receiveEvent(reactTag: Int, eventName: String, event: ReadableMap?) {
     receiveEvent(-1, reactTag, eventName, event)
   }
 
-  override fun receiveEvent(surfaceId: Int, reactTag: Int, eventName: String, event: WritableMap?) {
+  override fun receiveEvent(surfaceId: Int, reactTag: Int, eventName: String, event: ReadableMap?) {
     assert(false)
   }
 

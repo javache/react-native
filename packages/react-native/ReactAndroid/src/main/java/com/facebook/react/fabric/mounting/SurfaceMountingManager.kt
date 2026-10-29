@@ -1171,7 +1171,7 @@ internal constructor(
       reactTag: Int,
       eventName: String,
       canCoalesceEvent: Boolean,
-      params: WritableMap?,
+      params: ReadableMap?,
       @EventCategoryDef eventCategory: Int,
       eventTimestamp: Long,
   ) {
@@ -1252,7 +1252,7 @@ internal constructor(
 
   private class PendingViewEvent(
       private val eventName: String,
-      private val params: WritableMap?,
+      private val params: ReadableMap?,
       @field:EventCategoryDef private val eventCategory: Int,
       private val canCoalesceEvent: Boolean,
       private val eventTimestamp: Long,

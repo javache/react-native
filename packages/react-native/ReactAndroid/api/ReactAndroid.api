@@ -1372,8 +1372,8 @@ public abstract interface class com/facebook/react/bridge/UIManager : com/facebo
 	public abstract fun initialize ()V
 	public abstract fun invalidate ()V
 	public abstract fun markActiveTouchForTag (II)V
-	public abstract fun receiveEvent (IILjava/lang/String;Lcom/facebook/react/bridge/WritableMap;)V
-	public abstract fun receiveEvent (ILjava/lang/String;Lcom/facebook/react/bridge/WritableMap;)V
+	public abstract fun receiveEvent (IILjava/lang/String;Lcom/facebook/react/bridge/ReadableMap;)V
+	public abstract fun receiveEvent (ILjava/lang/String;Lcom/facebook/react/bridge/ReadableMap;)V
 	public abstract fun removeUIManagerEventListener (Lcom/facebook/react/bridge/UIManagerListener;)V
 	public abstract fun resolveCustomDirectEventName (Ljava/lang/String;)Ljava/lang/String;
 	public abstract fun resolveView (I)Landroid/view/View;
@@ -2275,11 +2275,11 @@ public class com/facebook/react/fabric/FabricUIManager : com/facebook/react/brid
 	public fun onRequestEventBeat ()V
 	public fun prependUIBlock (Lcom/facebook/react/fabric/interop/UIBlock;)V
 	public fun profileNextBatch ()V
-	public fun receiveEvent (IILjava/lang/String;Lcom/facebook/react/bridge/WritableMap;)V
-	public fun receiveEvent (IILjava/lang/String;ZLcom/facebook/react/bridge/WritableMap;I)V
-	public fun receiveEvent (IILjava/lang/String;ZLcom/facebook/react/bridge/WritableMap;IZ)V
-	public fun receiveEvent (IILjava/lang/String;ZLcom/facebook/react/bridge/WritableMap;IZJ)V
-	public fun receiveEvent (ILjava/lang/String;Lcom/facebook/react/bridge/WritableMap;)V
+	public fun receiveEvent (IILjava/lang/String;Lcom/facebook/react/bridge/ReadableMap;)V
+	public fun receiveEvent (IILjava/lang/String;ZLcom/facebook/react/bridge/ReadableMap;I)V
+	public fun receiveEvent (IILjava/lang/String;ZLcom/facebook/react/bridge/ReadableMap;IZ)V
+	public fun receiveEvent (IILjava/lang/String;ZLcom/facebook/react/bridge/ReadableMap;IZJ)V
+	public fun receiveEvent (ILjava/lang/String;Lcom/facebook/react/bridge/ReadableMap;)V
 	public fun removeUIManagerEventListener (Lcom/facebook/react/bridge/UIManagerListener;)V
 	public fun resolveCustomDirectEventName (Ljava/lang/String;)Ljava/lang/String;
 	public fun resolveView (I)Landroid/view/View;
@@ -3503,6 +3503,7 @@ public final class com/facebook/react/uimanager/NativeViewHierarchyOptimizer {
 
 public final class com/facebook/react/uimanager/OnLayoutEvent : com/facebook/react/uimanager/events/Event {
 	public static final field Companion Lcom/facebook/react/uimanager/OnLayoutEvent$Companion;
+	public synthetic fun getEventData ()Lcom/facebook/react/bridge/ReadableMap;
 	public fun getEventName ()Ljava/lang/String;
 	public static final fun obtain (IIIII)Lcom/facebook/react/uimanager/OnLayoutEvent;
 	public static final fun obtain (IIIIII)Lcom/facebook/react/uimanager/OnLayoutEvent;
@@ -4275,8 +4276,8 @@ public class com/facebook/react/uimanager/UIManagerModule : com/facebook/react/b
 	public fun onHostResume ()V
 	public fun prependUIBlock (Lcom/facebook/react/uimanager/UIBlock;)V
 	public fun profileNextBatch ()V
-	public fun receiveEvent (IILjava/lang/String;Lcom/facebook/react/bridge/WritableMap;)V
-	public fun receiveEvent (ILjava/lang/String;Lcom/facebook/react/bridge/WritableMap;)V
+	public fun receiveEvent (IILjava/lang/String;Lcom/facebook/react/bridge/ReadableMap;)V
+	public fun receiveEvent (ILjava/lang/String;Lcom/facebook/react/bridge/ReadableMap;)V
 	public fun removeRootView (I)V
 	public fun removeUIManagerEventListener (Lcom/facebook/react/bridge/UIManagerListener;)V
 	public fun resolveCustomDirectEventName (Ljava/lang/String;)Ljava/lang/String;
@@ -4679,6 +4680,7 @@ public abstract interface class com/facebook/react/uimanager/events/BatchEventDi
 public final class com/facebook/react/uimanager/events/ContentSizeChangeEvent : com/facebook/react/uimanager/events/Event {
 	public fun <init> (III)V
 	public fun <init> (IIII)V
+	public synthetic fun getEventData ()Lcom/facebook/react/bridge/ReadableMap;
 	public fun getEventName ()Ljava/lang/String;
 }
 
@@ -4695,7 +4697,7 @@ public abstract class com/facebook/react/uimanager/events/Event {
 	public fun getCoalescingKey ()S
 	public fun getEventAnimationDriverMatchSpec ()Lcom/facebook/react/uimanager/events/Event$EventAnimationDriverMatchSpec;
 	protected fun getEventCategory ()I
-	protected fun getEventData ()Lcom/facebook/react/bridge/WritableMap;
+	protected fun getEventData ()Lcom/facebook/react/bridge/ReadableMap;
 	public abstract fun getEventName ()Ljava/lang/String;
 	public final fun getSurfaceId ()I
 	public final fun getTimestampMs ()J
@@ -4734,7 +4736,7 @@ public final class com/facebook/react/uimanager/events/NativeGestureUtil {
 }
 
 public abstract interface class com/facebook/react/uimanager/events/RCTEventEmitter : com/facebook/react/bridge/JavaScriptModule {
-	public abstract fun receiveEvent (ILjava/lang/String;Lcom/facebook/react/bridge/WritableMap;)V
+	public abstract fun receiveEvent (ILjava/lang/String;Lcom/facebook/react/bridge/ReadableMap;)V
 	public fun receiveTouches (Ljava/lang/String;Lcom/facebook/react/bridge/WritableArray;Lcom/facebook/react/bridge/WritableArray;)V
 }
 
@@ -4743,16 +4745,16 @@ public final class com/facebook/react/uimanager/events/RCTEventEmitter$DefaultIm
 }
 
 public abstract interface class com/facebook/react/uimanager/events/RCTModernEventEmitter : com/facebook/react/uimanager/events/RCTEventEmitter {
-	public fun receiveEvent (IILjava/lang/String;Lcom/facebook/react/bridge/WritableMap;)V
-	public abstract fun receiveEvent (IILjava/lang/String;ZILcom/facebook/react/bridge/WritableMap;I)V
-	public fun receiveEvent (IILjava/lang/String;ZILcom/facebook/react/bridge/WritableMap;IJ)V
-	public fun receiveEvent (ILjava/lang/String;Lcom/facebook/react/bridge/WritableMap;)V
+	public fun receiveEvent (IILjava/lang/String;Lcom/facebook/react/bridge/ReadableMap;)V
+	public abstract fun receiveEvent (IILjava/lang/String;ZILcom/facebook/react/bridge/ReadableMap;I)V
+	public fun receiveEvent (IILjava/lang/String;ZILcom/facebook/react/bridge/ReadableMap;IJ)V
+	public fun receiveEvent (ILjava/lang/String;Lcom/facebook/react/bridge/ReadableMap;)V
 }
 
 public final class com/facebook/react/uimanager/events/RCTModernEventEmitter$DefaultImpls {
-	public static fun receiveEvent (Lcom/facebook/react/uimanager/events/RCTModernEventEmitter;IILjava/lang/String;Lcom/facebook/react/bridge/WritableMap;)V
-	public static fun receiveEvent (Lcom/facebook/react/uimanager/events/RCTModernEventEmitter;IILjava/lang/String;ZILcom/facebook/react/bridge/WritableMap;IJ)V
-	public static fun receiveEvent (Lcom/facebook/react/uimanager/events/RCTModernEventEmitter;ILjava/lang/String;Lcom/facebook/react/bridge/WritableMap;)V
+	public static fun receiveEvent (Lcom/facebook/react/uimanager/events/RCTModernEventEmitter;IILjava/lang/String;Lcom/facebook/react/bridge/ReadableMap;)V
+	public static fun receiveEvent (Lcom/facebook/react/uimanager/events/RCTModernEventEmitter;IILjava/lang/String;ZILcom/facebook/react/bridge/ReadableMap;IJ)V
+	public static fun receiveEvent (Lcom/facebook/react/uimanager/events/RCTModernEventEmitter;ILjava/lang/String;Lcom/facebook/react/bridge/ReadableMap;)V
 	public static fun receiveTouches (Lcom/facebook/react/uimanager/events/RCTModernEventEmitter;Ljava/lang/String;Lcom/facebook/react/bridge/WritableArray;Lcom/facebook/react/bridge/WritableArray;)V
 }
 
@@ -5238,6 +5240,7 @@ public final class com/facebook/react/views/image/ImageLoadEvent : com/facebook/
 	public static final fun createProgressEvent (ILjava/lang/String;II)Lcom/facebook/react/views/image/ImageLoadEvent;
 	public static final fun eventNameForType (I)Ljava/lang/String;
 	public fun getCoalescingKey ()S
+	public synthetic fun getEventData ()Lcom/facebook/react/bridge/ReadableMap;
 	public fun getEventName ()Ljava/lang/String;
 }
 
@@ -5924,6 +5927,7 @@ public final class com/facebook/react/views/scroll/ReactScrollViewManager$Compan
 public final class com/facebook/react/views/scroll/ScrollEvent : com/facebook/react/uimanager/events/Event {
 	public static final field Companion Lcom/facebook/react/views/scroll/ScrollEvent$Companion;
 	public fun canCoalesce ()Z
+	public synthetic fun getEventData ()Lcom/facebook/react/bridge/ReadableMap;
 	public fun getEventName ()Ljava/lang/String;
 	public static final fun obtain (IILcom/facebook/react/views/scroll/ScrollEventType;FFFFIIII)Lcom/facebook/react/views/scroll/ScrollEvent;
 	public static final fun obtain (ILcom/facebook/react/views/scroll/ScrollEventType;FFFFIIII)Lcom/facebook/react/views/scroll/ScrollEvent;

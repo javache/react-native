@@ -9,7 +9,7 @@ package com.facebook.react.uimanager.events
 
 import com.facebook.proguard.annotations.DoNotStrip
 import com.facebook.react.bridge.ReactNativeJNISoLoader
-import com.facebook.react.bridge.WritableNativeMap
+import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.uimanager.PixelUtil.pxToDp
 import com.facebook.systrace.Systrace
 
@@ -167,5 +167,5 @@ internal object TouchesHelper {
       eventPointer: Int,
       changedPointers: Int,
       touchPointers: Int,
-  ): WritableNativeMap
+  ): ReadableMap
 }

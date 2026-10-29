@@ -18,7 +18,6 @@ import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.bridge.RetryableMountingLayerException
 import com.facebook.react.bridge.UiThreadUtil.assertOnUiThread
-import com.facebook.react.bridge.WritableMap
 import com.facebook.react.fabric.events.EventEmitterWrapper
 import com.facebook.react.fabric.mounting.mountitems.MountItem
 import com.facebook.react.touch.JSResponderHandler
@@ -342,7 +341,7 @@ internal class MountingManager(
       reactTag: Int,
       eventName: String,
       canCoalesceEvent: Boolean,
-      params: WritableMap?,
+      params: ReadableMap?,
       @EventCategoryDef eventCategory: Int,
       eventTimestamp: Long,
   ) {

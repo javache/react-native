@@ -9,7 +9,7 @@
 
 package com.facebook.react.uimanager.events
 
-import com.facebook.react.bridge.WritableMap
+import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.common.SystemClock.uptimeMillis
 
 /**
@@ -152,13 +152,13 @@ public abstract class Event<T : Event<T>> {
   }
 
   /** Can be overridden by classes when no custom logic for dispatching is needed. */
-  protected open fun getEventData(): WritableMap? = null
+  protected open fun getEventData(): ReadableMap? = null
 
   /**
    * NOTE: This is a transitional method that allows accessing event data from outside the
    * sublcasses, but inside the package.
    */
-  internal fun internal_getEventData(): WritableMap? = getEventData()
+  internal fun internal_getEventData(): ReadableMap? = getEventData()
 
   protected open fun getEventCategory(): Int = EventCategoryDef.UNSPECIFIED
 

@@ -10,7 +10,7 @@
 package com.facebook.react.internal.interop
 
 import com.facebook.react.bridge.ReactContext
-import com.facebook.react.bridge.WritableMap
+import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.common.annotations.VisibleForTesting
 import com.facebook.react.common.annotations.internal.InteropLegacyArchitecture
 import com.facebook.react.common.annotations.internal.LegacyArchitectureLogger
@@ -34,7 +34,7 @@ internal class InteropEventEmitter(private val reactContext: ReactContext) : RCT
   private var eventDispatcherOverride: EventDispatcher? = null
 
   @Deprecated("Deprecated in Java")
-  override fun receiveEvent(targetTag: Int, eventName: String, params: WritableMap?) {
+  override fun receiveEvent(targetTag: Int, eventName: String, params: ReadableMap?) {
     val dispatcher = eventDispatcherOverride ?: UIManagerHelper.getEventDispatcher(reactContext)
     val surfaceId = UIManagerHelper.getSurfaceId(reactContext)
     dispatcher?.dispatchEvent(InteropEvent(eventName, params, surfaceId, targetTag))

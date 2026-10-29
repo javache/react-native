@@ -7,7 +7,7 @@
 
 package com.facebook.react.uimanager.events
 
-import com.facebook.react.bridge.WritableMap
+import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.common.annotations.UnstableReactNativeAPI
 
 @UnstableReactNativeAPI
@@ -17,7 +17,7 @@ internal interface SynchronousEventReceiver {
       reactTag: Int,
       eventName: String,
       canCoalesceEvent: Boolean,
-      params: WritableMap?,
+      params: ReadableMap?,
       @EventCategoryDef eventCategory: Int,
       experimentalIsSynchronous: Boolean,
   )
@@ -34,7 +34,7 @@ internal interface SynchronousEventReceiver {
       reactTag: Int,
       eventName: String,
       canCoalesceEvent: Boolean,
-      params: WritableMap?,
+      params: ReadableMap?,
       @EventCategoryDef eventCategory: Int,
       experimentalIsSynchronous: Boolean,
       eventTimestamp: Long,

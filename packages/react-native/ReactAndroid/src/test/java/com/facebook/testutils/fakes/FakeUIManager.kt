@@ -93,11 +93,11 @@ class FakeUIManager : UIManager, UIBlockViewResolver {
   }
 
   @Deprecated("")
-  override fun receiveEvent(reactTag: Int, eventName: String, event: WritableMap?) {
+  override fun receiveEvent(reactTag: Int, eventName: String, event: ReadableMap?) {
     error("Not yet implemented")
   }
 
-  override fun receiveEvent(surfaceId: Int, reactTag: Int, eventName: String, event: WritableMap?) {
+  override fun receiveEvent(surfaceId: Int, reactTag: Int, eventName: String, event: ReadableMap?) {
     error("Not yet implemented")
   }
 

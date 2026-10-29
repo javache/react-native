@@ -9,11 +9,13 @@ package com.facebook.testutils.shadows
 
 import com.facebook.react.bridge.JavaOnlyArray
 import com.facebook.react.bridge.JavaOnlyMap
+import com.facebook.react.bridge.ReadableMap
+import com.facebook.react.bridge.ReadableNativeMap
 import com.facebook.react.bridge.WritableMap
-import com.facebook.react.bridge.WritableNativeMap
 import com.facebook.react.uimanager.events.TouchesHelper
 import org.robolectric.annotation.Implementation
 import org.robolectric.annotation.Implements
+import org.robolectric.shadow.api.Shadow
 
 @Implements(TouchesHelper::class)
 class ShadowTouchesHelper {
@@ -28,7 +30,7 @@ class ShadowTouchesHelper {
         eventPointer: Int,
         changedPointers: Int,
         touchPointers: Int,
-    ): WritableNativeMap {
+    ): ReadableMap {
       val pointerCount = pointerData.size / TouchesHelper.POINTER_FIELDS
       val changedTouches = JavaOnlyArray()
       val touches = JavaOnlyArray()
@@ -40,11 +42,13 @@ class ShadowTouchesHelper {
           touches.pushMap(JavaOnlyMap().also { putTouch(it, pointerData, index) })
         }
       }
-      val payload = WritableNativeMap()
+      val payload = JavaOnlyMap()
       putTouch(payload, pointerData, eventPointer)
       payload.putArray("changedTouches", changedTouches)
       payload.putArray("touches", touches)
-      return payload
+      val nativeMap = Shadow.newInstanceOf(ReadableNativeMap::class.java)
+      Shadow.extract<ShadowReadableNativeMap>(nativeMap).backingMap = payload
+      return nativeMap
     }
 
     private fun putTouch(touch: WritableMap, pointerData: DoubleArray, index: Int) {

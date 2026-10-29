@@ -7,7 +7,7 @@
 
 package com.facebook.react.uimanager.events
 
-import com.facebook.react.bridge.WritableMap
+import com.facebook.react.bridge.ReadableMap
 
 /**
  * This is a transitional replacement for [RCTEventEmitter] that works with Fabric and non-Fabric
@@ -17,6 +17,9 @@ import com.facebook.react.bridge.WritableMap
  * This interface will *also* be deleted in the distant future and be replaced with a new interface
  * that doesn't need the old `receiveEvent` method at all. But for the foreseeable future, this is
  * the recommended interface to use for EventEmitters.
+ *
+ * Fabric requires native-backed event payloads and consumes them during dispatch. Callers must not
+ * reuse a payload after passing it to [receiveEvent].
  */
 @Suppress("DEPRECATION")
 public interface RCTModernEventEmitter : RCTEventEmitter {
@@ -24,12 +27,12 @@ public interface RCTModernEventEmitter : RCTEventEmitter {
       "Use RCTModernEventEmitter",
       ReplaceWith("RCTModernEventEmitter.receiveEvent(surfaceId, targetTag, eventName, params)"),
   )
-  override fun receiveEvent(targetTag: Int, eventName: String, params: WritableMap?) {
+  override fun receiveEvent(targetTag: Int, eventName: String, params: ReadableMap?) {
     receiveEvent(-1, targetTag, eventName, params)
   }
 
   @Deprecated("Use the overload with eventTimestamp parameter instead.")
-  public fun receiveEvent(surfaceId: Int, targetTag: Int, eventName: String, params: WritableMap?) {
+  public fun receiveEvent(surfaceId: Int, targetTag: Int, eventName: String, params: ReadableMap?) {
     // We assume this event can't be coalesced. `customCoalesceKey` has no meaning in Fabric.
     receiveEvent(surfaceId, targetTag, eventName, false, 0, params, EventCategoryDef.UNSPECIFIED)
   }
@@ -41,7 +44,7 @@ public interface RCTModernEventEmitter : RCTEventEmitter {
       eventName: String,
       canCoalesceEvent: Boolean,
       customCoalesceKey: Int,
-      params: WritableMap?,
+      params: ReadableMap?,
       @EventCategoryDef category: Int,
   )
 
@@ -58,7 +61,7 @@ public interface RCTModernEventEmitter : RCTEventEmitter {
       eventName: String,
       canCoalesceEvent: Boolean,
       customCoalesceKey: Int,
-      params: WritableMap?,
+      params: ReadableMap?,
       @EventCategoryDef category: Int,
       eventTimestamp: Long,
   ) {

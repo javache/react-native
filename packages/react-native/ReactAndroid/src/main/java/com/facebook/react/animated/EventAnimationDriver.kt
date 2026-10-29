@@ -11,7 +11,6 @@ import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.bridge.ReadableType
 import com.facebook.react.bridge.UnexpectedNativeTypeException
-import com.facebook.react.bridge.WritableMap
 import com.facebook.react.uimanager.events.EventCategoryDef
 import com.facebook.react.uimanager.events.RCTModernEventEmitter
 
@@ -29,7 +28,7 @@ internal class EventAnimationDriver(
       eventName: String,
       canCoalesceEvent: Boolean,
       customCoalesceKey: Int,
-      params: WritableMap?,
+      params: ReadableMap?,
       @EventCategoryDef category: Int,
   ) {
     requireNotNull(params) { "Native animated events must have event data." }

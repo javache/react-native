@@ -11,8 +11,8 @@ import android.annotation.SuppressLint
 import com.facebook.jni.HybridClassBase
 import com.facebook.proguard.annotations.DoNotStripAny
 import com.facebook.react.bridge.NativeMap
+import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.bridge.UiThreadUtil
-import com.facebook.react.bridge.WritableMap
 import com.facebook.react.fabric.FabricSoLoader.staticInit
 import com.facebook.react.uimanager.events.EventCategoryDef
 
@@ -46,14 +46,14 @@ internal class EventEmitterWrapper private constructor() : HybridClassBase() {
    * Invokes the execution of the C++ EventEmitter.
    *
    * @param eventName [String] name of the event to execute.
-   * @param params [WritableMap] payload of the event
+   * @param params [ReadableMap] payload of the event
    * @param eventCategory event category
    * @param eventTimestamp timestamp when the event was triggered (in milliseconds since boot)
    */
   @Synchronized
   fun dispatch(
       eventName: String,
-      params: WritableMap?,
+      params: ReadableMap?,
       @EventCategoryDef eventCategory: Int,
       eventTimestamp: Long,
   ) {
@@ -64,7 +64,7 @@ internal class EventEmitterWrapper private constructor() : HybridClassBase() {
   }
 
   @Synchronized
-  fun dispatchEventSynchronously(eventName: String, params: WritableMap?, eventTimestamp: Long) {
+  fun dispatchEventSynchronously(eventName: String, params: ReadableMap?, eventTimestamp: Long) {
     if (!isValid) {
       return
     }
@@ -77,11 +77,11 @@ internal class EventEmitterWrapper private constructor() : HybridClassBase() {
    * target.
    *
    * @param eventName [String] name of the event to execute.
-   * @param params [WritableMap] payload of the event
+   * @param params [ReadableMap] payload of the event
    * @param eventTimestamp timestamp when the event was triggered (in milliseconds since boot)
    */
   @Synchronized
-  fun dispatchUnique(eventName: String, params: WritableMap?, eventTimestamp: Long) {
+  fun dispatchUnique(eventName: String, params: ReadableMap?, eventTimestamp: Long) {
     if (!isValid) {
       return
     }

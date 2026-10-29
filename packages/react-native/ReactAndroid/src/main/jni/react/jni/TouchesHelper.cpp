@@ -8,9 +8,9 @@
 #include "TouchesHelper.h"
 
 #include <stdexcept>
+#include <utility>
 
-#include "WritableNativeArray.h"
-#include "WritableNativeMap.h"
+#include "ReadableNativeMap.h"
 
 using namespace facebook::jni;
 
@@ -44,7 +44,7 @@ folly::dynamic createTouch(const double* fields) {
   return touch;
 }
 
-local_ref<WritableNativeMap::jhybridobject> createTouchPayload(
+local_ref<ReadableMap::javaobject> createTouchPayload(
     alias_ref<jclass> /*unused*/,
     alias_ref<JArrayDouble> pointerData,
     jint eventPointer,
@@ -72,25 +72,15 @@ local_ref<WritableNativeMap::jhybridobject> createTouchPayload(
     }
   }
 
-  auto jPayload = WritableNativeMap::newObjectJavaArgs();
-  auto* payload = jPayload->cthis();
-  // NOLINTBEGIN(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-  const double* fields = values.get() + eventPointer * kPointerFields;
-  payload->putDouble("pageX", fields[kPageXIndex]);
-  payload->putDouble("pageY", fields[kPageYIndex]);
-  payload->putDouble("locationX", fields[kLocationXIndex]);
-  payload->putDouble("locationY", fields[kLocationYIndex]);
-  payload->putInt(
-      "targetSurface", static_cast<int>(fields[kTargetSurfaceIndex]));
-  payload->putInt("target", static_cast<int>(fields[kTargetIndex]));
-  payload->putDouble("timestamp", fields[kTimestampIndex]);
-  payload->putDouble("identifier", fields[kIdentifierIndex]);
-  // NOLINTEND(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-  WritableNativeArray changedTouchesArray(std::move(changedTouches));
-  payload->putNativeArray("changedTouches", &changedTouchesArray);
-  WritableNativeArray touchesArray(std::move(touches));
-  payload->putNativeArray("touches", &touchesArray);
-  return jPayload;
+  // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+  auto payload = createTouch(values.get() + eventPointer * kPointerFields);
+  payload.insert("changedTouches", std::move(changedTouches));
+  payload.insert("touches", std::move(touches));
+  // NOLINTBEGIN(cppcoreguidelines-pro-type-reinterpret-cast)
+  return adopt_local(
+      reinterpret_cast<ReadableMap::javaobject>(
+          ReadableNativeMap::createWithContents(std::move(payload)).release()));
+  // NOLINTEND(cppcoreguidelines-pro-type-reinterpret-cast)
 }
 
 } // namespace

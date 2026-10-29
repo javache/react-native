@@ -25,7 +25,7 @@ public interface UIManager : PerformanceCounter {
   @ThreadConfined(ThreadConfined.UI)
   @Deprecated(
       "This legacy surface API will be removed in a future release. " +
-          "Use ReactHost.createSurface(...) and ReactSurface.start() instead."
+          "Use ReactHost.createSurface(...) and ReactSurface.start() instead.",
   )
   public fun <T : View> addRootView(rootView: T, initialProps: WritableMap?): Int
 
@@ -37,7 +37,7 @@ public interface UIManager : PerformanceCounter {
   @AnyThread
   @Deprecated(
       "This legacy surface API will be removed in a future release. " +
-          "Use ReactHost.createSurface(...) and ReactSurface.start() instead."
+          "Use ReactHost.createSurface(...) and ReactSurface.start() instead.",
   )
   public fun <T : View?> startSurface(
       rootView: T,
@@ -55,7 +55,7 @@ public interface UIManager : PerformanceCounter {
    */
   @AnyThread
   @Deprecated(
-      "This legacy surface API will be removed in a future release. Use ReactSurface.stop() instead."
+      "This legacy surface API will be removed in a future release. Use ReactSurface.stop() instead.",
   )
   public fun stopSurface(surfaceId: Int)
 
@@ -156,10 +156,11 @@ public interface UIManager : PerformanceCounter {
    *
    * @param reactTag tag
    * @param eventName name of the event
-   * @param event parameters
+   * @param event native-backed event parameters; Fabric consumes the payload during dispatch, so it
+   *   must not be reused afterwards
    */
   @Deprecated("", ReplaceWith("receiveEvent(surfaceId, reactTag, eventName, event)"))
-  public fun receiveEvent(reactTag: Int, eventName: String, event: WritableMap?)
+  public fun receiveEvent(reactTag: Int, eventName: String, event: ReadableMap?)
 
   /**
    * This method dispatches events from RN Android code to JS. The delivery of this event will not
@@ -168,9 +169,10 @@ public interface UIManager : PerformanceCounter {
    * @param surfaceId
    * @param reactTag tag
    * @param eventName name of the event
-   * @param event parameters
+   * @param event native-backed event parameters; Fabric consumes the payload during dispatch, so it
+   *   must not be reused afterwards
    */
-  public fun receiveEvent(surfaceId: Int, reactTag: Int, eventName: String, event: WritableMap?)
+  public fun receiveEvent(surfaceId: Int, reactTag: Int, eventName: String, event: ReadableMap?)
 
   /** Resolves Direct Event name exposed to JS from the one known to the Native side. */
   @Deprecated("") public fun resolveCustomDirectEventName(eventName: String): String?

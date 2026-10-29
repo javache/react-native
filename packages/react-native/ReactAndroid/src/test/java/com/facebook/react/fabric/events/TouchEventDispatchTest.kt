@@ -15,6 +15,7 @@ import com.facebook.react.bridge.JavaOnlyArray
 import com.facebook.react.bridge.JavaOnlyMap
 import com.facebook.react.bridge.ReactTestHelper
 import com.facebook.react.bridge.ReadableMap
+import com.facebook.react.bridge.ReadableNativeMap
 import com.facebook.react.bridge.WritableMap
 import com.facebook.react.bridge.queue.MessageQueueThread
 import com.facebook.react.bridge.queue.ReactQueueConfiguration
@@ -29,9 +30,9 @@ import com.facebook.react.uimanager.events.TouchEventType
 import com.facebook.testutils.shadows.ShadowArguments
 import com.facebook.testutils.shadows.ShadowNativeLoader
 import com.facebook.testutils.shadows.ShadowNativeMap
+import com.facebook.testutils.shadows.ShadowReadableNativeMap
 import com.facebook.testutils.shadows.ShadowSoLoader
 import com.facebook.testutils.shadows.ShadowTouchesHelper
-import com.facebook.testutils.shadows.ShadowWritableNativeMap
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.After
 import org.junit.Before
@@ -54,9 +55,9 @@ import org.robolectric.shadow.api.Shadow
             ShadowSoLoader::class,
             ShadowNativeLoader::class,
             ShadowArguments::class,
-            ShadowWritableNativeMap::class,
+            ShadowReadableNativeMap::class,
             ShadowTouchesHelper::class,
-        ]
+        ],
 )
 class TouchEventDispatchTest {
   private val touchEventCoalescingKeyHelper = TouchEventCoalescingKeyHelper()
@@ -560,7 +561,7 @@ class TouchEventDispatchTest {
     for (event in startMoveEndSequence) {
       eventDispatcher.dispatchEvent(event)
     }
-    val argument = ArgumentCaptor.forClass(WritableMap::class.java)
+    val argument = ArgumentCaptor.forClass(ReadableMap::class.java)
     verify(eventEmitter, times(4))
         .receiveEvent(
             anyInt(),
@@ -580,7 +581,7 @@ class TouchEventDispatchTest {
     for (event in startMoveCancelSequence) {
       eventDispatcher.dispatchEvent(event)
     }
-    val argument = ArgumentCaptor.forClass(WritableMap::class.java)
+    val argument = ArgumentCaptor.forClass(ReadableMap::class.java)
     verify(eventEmitter, times(6))
         .receiveEvent(
             anyInt(),
@@ -600,7 +601,7 @@ class TouchEventDispatchTest {
     for (event in startPointerMoveUpSequence) {
       eventDispatcher.dispatchEvent(event)
     }
-    val argument = ArgumentCaptor.forClass(WritableMap::class.java)
+    val argument = ArgumentCaptor.forClass(ReadableMap::class.java)
     verify(eventEmitter, times(6))
         .receiveEvent(
             anyInt(),
@@ -711,8 +712,12 @@ class TouchEventDispatchTest {
 }
 
 /** The contents of the captured payloads, which are shadowed native maps. */
-private fun ArgumentCaptor<WritableMap>.payloads(): List<JavaOnlyMap> =
-    allValues.map { Shadow.extract<ShadowNativeMap>(it).backingMap }
+private fun ArgumentCaptor<ReadableMap>.payloads(): List<JavaOnlyMap> =
+    allValues.map { payload ->
+      assertThat(payload).isInstanceOf(ReadableNativeMap::class.java)
+      assertThat(payload).isNotInstanceOf(WritableMap::class.java)
+      Shadow.extract<ShadowNativeMap>(payload).backingMap
+    }
 
 private fun IntArray.toPointerProperties(): Array<PointerProperties> =
     this.map { PointerProperties().apply { id = it } }.toTypedArray()
