@@ -458,25 +458,6 @@ describe('react-native-babel-preset transform snapshots', () => {
       expect(result).toContain('class Animal');
     });
 
-    it('preserves unicode regexes with hermes-stable profile', () => {
-      const code = `const isLetter = c => /^\\p{L}$/u.test(c);`;
-      const result = transformCode(code, {
-        dev: false,
-        unstable_transformProfile: 'hermes-stable',
-      });
-      expect(result).toContain('/^\\p{L}$/u');
-    });
-
-    it('transforms unicode regexes with hermes-legacy profile', () => {
-      const code = `const isLetter = c => /^\\p{L}$/u.test(c);`;
-      const result = transformCode(code, {
-        dev: false,
-        unstable_transformProfile: 'hermes-legacy',
-      });
-      expect(result).not.toContain('\\p{L}');
-      expect(result).not.toContain('/u');
-    });
-
     it('handles named capturing groups in regex', () => {
       const code = `const match = str.match(/(?<year>\\d{4})-(?<month>\\d{2})/);`;
       const result = transformCode(code, {dev: false});

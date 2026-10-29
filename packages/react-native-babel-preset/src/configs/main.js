@@ -119,10 +119,6 @@ const getPreset = (src, options, babel) => {
   // Preserve class syntax and related features for Hermes V1 profiles.
   const preserveClasses = isHermesProfile;
 
-  // Hermes V1 compiles `u` flag regexes natively, including Unicode property
-  // escapes, which Babel would otherwise expand into explicit character ranges.
-  const preserveUnicodeRegex = isHermesProfile;
-
   // Private fields can only be preserved when the surrounding class syntax is
   // also preserved. Babel's class transform requires the private transforms.
   const preserveClassPrivate =
@@ -298,9 +294,7 @@ const getPreset = (src, options, babel) => {
           [require('@babel/plugin-syntax-dynamic-import')],
           [require('@babel/plugin-syntax-export-default-from')],
           ...passthroughSyntaxPlugins,
-          ...(preserveUnicodeRegex
-            ? []
-            : [[require('@babel/plugin-transform-unicode-regex')]]),
+          [require('@babel/plugin-transform-unicode-regex')],
         ],
       },
       {
