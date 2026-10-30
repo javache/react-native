@@ -553,7 +553,10 @@ using namespace facebook::react;
     return;
   }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
   NSArray<NSString *> *modulesInOldArchMode = [getModulesLoadedWithOldArch() copy];
+#pragma clang diagnostic pop
   if (modulesInOldArchMode.count > 0) {
     NSMutableString *moduleList = [NSMutableString new];
     for (NSString *moduleName in modulesInOldArchMode) {
